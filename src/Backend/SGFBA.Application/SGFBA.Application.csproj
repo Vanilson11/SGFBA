@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\SGFBA.Communication\SGFBA.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\SGFBA.Exception\SGFBA.Exception.csproj" />
+    <ProjectReference Include="..\SGFBA.Domain\SGFBA.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

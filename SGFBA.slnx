@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Backend/">
+    <Project Path="src/Backend/SGFBA.Api/SGFBA.Api.csproj" />
+    <Project Path="src/Backend/SGFBA.Application/SGFBA.Application.csproj" />
+    <Project Path="src/Backend/SGFBA.Domain/SGFBA.Domain.csproj" />
+    <Project Path="src/Backend/SGFBA.Infrastructure/SGFBA.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/SGFBA.Communication/SGFBA.Communication.csproj" />
+    <Project Path="src/Shared/SGFBA.Exception/SGFBA.Exception.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>

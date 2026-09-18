@@ -1,0 +1,6 @@
+@SGFBA.Api_HostAddress = http://localhost:5080
+
+GET {{SGFBA.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
