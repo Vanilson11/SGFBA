@@ -11,6 +11,6 @@ public class Usuario
     public string Email { get; set; } = string.Empty;
     public string Senha { get; set; } = string.Empty;
     public string Role { get; set; } = Roles.MEMBRO;
-    public bool Ativo { get; set; } //gerar nova migration atualizando essa propriedade pra ter como default true
+    public bool Ativo { get; set; } = true;
     public Guid UserIdentifier { get; set; } = Guid.CreateVersion7();
 }
