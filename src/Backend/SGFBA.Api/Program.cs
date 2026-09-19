@@ -1,3 +1,4 @@
+using SGFBA.Application;
 using SGFBA.Infrastructure;
 using SGFBA.Infrastructure.Migrations;
 
@@ -8,6 +9,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

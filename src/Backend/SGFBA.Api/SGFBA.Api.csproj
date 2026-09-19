@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Shared\SGFBA.Communication\SGFBA.Communication.csproj" />
     <ProjectReference Include="..\SGFBA.Application\SGFBA.Application.csproj" />
     <ProjectReference Include="..\SGFBA.Infrastructure\SGFBA.Infrastructure.csproj" />
