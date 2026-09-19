@@ -1,12 +1,16 @@
+using SGFBA.Api.Converters;
+using SGFBA.Api.Fillters;
 using SGFBA.Application;
 using SGFBA.Infrastructure;
 using SGFBA.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new StringConverter()));
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+builder.Services.AddRouting(option => option.LowercaseUrls = true);
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFillter)));
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
