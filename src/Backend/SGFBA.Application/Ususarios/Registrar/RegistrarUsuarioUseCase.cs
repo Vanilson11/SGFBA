@@ -7,6 +7,8 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 {
     public async Task<ResponseRegistrarUsuarioJson> Executar(RequestRegistrarUsuarioJson request)
     {
-        throw new NotImplementedException();
+        
     }
+
+
 }
