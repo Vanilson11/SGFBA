@@ -17,7 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\SGFBA.Communication\SGFBA.Communication.csproj" />
     <ProjectReference Include="..\SGFBA.Application\SGFBA.Application.csproj" />
-    <ProjectReference Include="..\SGFBA.Domain\SGFBA.Domain.csproj" />
+    <ProjectReference Include="..\SGFBA.Infrastructure\SGFBA.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
