@@ -153,4 +153,10 @@
   <data name="SENHA_OBRIGATORIA" xml:space="preserve">
     <value>A senha é obrigatória</value>
   </data>
+  <data name="USUARIO_COM_MATRICULA_EXISTE" xml:space="preserve">
+    <value>Usuário já registrado com a matrícula informada.</value>
+  </data>
+  <data name="USUARIO_JA_REGISTRADO" xml:space="preserve">
+    <value>Usuário já registrado com o e-mail informado</value>
+  </data>
 </root>

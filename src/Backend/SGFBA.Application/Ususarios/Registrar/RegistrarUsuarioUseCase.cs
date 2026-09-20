@@ -1,5 +1,14 @@
-﻿using SGFBA.Communication.Requests;
+﻿using FluentValidation.Results;
+using Mapster;
+using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
+using SGFBA.Domain.Entities;
+using SGFBA.Domain.Enums;
+using SGFBA.Domain.Repositories;
+using SGFBA.Domain.Repositories.Usuarios;
+using SGFBA.Domain.Security.Criptography;
+using SGFBA.Domain.Security.Tokens;
+using SGFBA.Exception;
 using SGFBA.Exception.ExceptionsBase;
 using System.Text.RegularExpressions;
 
@@ -7,26 +16,65 @@ namespace SGFBA.Application.Ususarios.Registrar;
 
 public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 {
+    private readonly IReadOnlyUsuarioRepository _readOnlyUsuarioRepository;
+    private readonly IWriteOnlyUsuariosRepository _writeOnlyUsuariosRepository;
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IUnitOffWork _unitOffWork;
+    private readonly IAccessTokenGenerator _accessTokenGenerator;
+
+    public RegistrarUsuarioUseCase(
+        IReadOnlyUsuarioRepository readOnlyUsuarioRepository,
+        IWriteOnlyUsuariosRepository writeOnlyUsuariosRepository,
+        IPasswordHasher passwordHasher,
+        IUnitOffWork unitOffWork,
+        IAccessTokenGenerator accessTokenGenerator)
+    {
+        _readOnlyUsuarioRepository = readOnlyUsuarioRepository;
+        _writeOnlyUsuariosRepository = writeOnlyUsuariosRepository;
+        _passwordHasher = passwordHasher;
+        _unitOffWork = unitOffWork;
+        _accessTokenGenerator = accessTokenGenerator;
+    }
     public async Task<ResponseRegistrarUsuarioJson> Executar(RequestRegistrarUsuarioJson request)
     {
-        Validar_Request(request);
+        await Validar_Request(request);
 
         request.Email = Regex.Replace(request.Email, @"\s+", "");
         request.Senha = Regex.Replace(request.Senha, @"\s+", "");
 
+        var usuario = request.Adapt<Usuario>();
+
+        usuario.Senha = _passwordHasher.HashPassword(request.Senha);
+
+        await _writeOnlyUsuariosRepository.Adicionar(usuario);
+
+        await _unitOffWork.Commit();
+
         return new ResponseRegistrarUsuarioJson()
         {
-            Id = 1,
-            Nome = request.Nome,
-            Token = "TOKEN"
+            Id = usuario.Id,
+            Nome = usuario.Nome,
+            Token = _accessTokenGenerator.Gerar(usuario)
         };
     }
 
-    private void Validar_Request(RequestRegistrarUsuarioJson request)
+    private async Task Validar_Request(RequestRegistrarUsuarioJson request)
     {
         var resultado = new UsuarioValidator().Validate(request);
+        var usuarioComEmailExiste = await _readOnlyUsuarioRepository.BuscarPorEmail(request.Email);
 
-        if(resultado.IsValid is false)
+        if (usuarioComEmailExiste)
+        {
+            resultado.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.USUARIO_JA_REGISTRADO));
+        }
+
+        var usuarioComMatriculaExiste = await _readOnlyUsuarioRepository.BuscarPorMatricula(request.Matricula);
+        if (usuarioComMatriculaExiste)
+        {
+            resultado.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.USUARIO_COM_MATRICULA_EXISTE));
+        }
+
+        if (resultado.IsValid is false)
         {
             var mensagensErro = resultado.Errors.Select(erro => erro.ErrorMessage).ToList();
 

@@ -167,5 +167,23 @@ namespace SGFBA.Exception {
                 return ResourceManager.GetString("SENHA_OBRIGATORIA", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário já registrado com a matrícula informada..
+        /// </summary>
+        public static string USUARIO_COM_MATRICULA_EXISTE {
+            get {
+                return ResourceManager.GetString("USUARIO_COM_MATRICULA_EXISTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário já registrado com o e-mail informado.
+        /// </summary>
+        public static string USUARIO_JA_REGISTRADO {
+            get {
+                return ResourceManager.GetString("USUARIO_JA_REGISTRADO", resourceCulture);
+            }
+        }
     }
 }
