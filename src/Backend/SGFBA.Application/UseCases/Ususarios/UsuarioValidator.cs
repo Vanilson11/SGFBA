@@ -2,7 +2,7 @@
 using SGFBA.Communication.Requests;
 using SGFBA.Exception;
 
-namespace SGFBA.Application.Ususarios;
+namespace SGFBA.Application.UseCases.Ususarios;
 
 public class UsuarioValidator : AbstractValidator<RequestRegistrarUsuarioJson>
 {

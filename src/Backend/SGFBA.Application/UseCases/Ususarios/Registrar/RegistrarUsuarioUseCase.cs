@@ -3,7 +3,6 @@ using Mapster;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 using SGFBA.Domain.Entities;
-using SGFBA.Domain.Enums;
 using SGFBA.Domain.Repositories;
 using SGFBA.Domain.Repositories.Usuarios;
 using SGFBA.Domain.Security.Criptography;
@@ -12,7 +11,7 @@ using SGFBA.Exception;
 using SGFBA.Exception.ExceptionsBase;
 using System.Text.RegularExpressions;
 
-namespace SGFBA.Application.Ususarios.Registrar;
+namespace SGFBA.Application.UseCases.Ususarios.Registrar;
 
 public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 {

@@ -3,7 +3,7 @@ using FluentValidation.Validators;
 using SGFBA.Exception;
 using System.Text.RegularExpressions;
 
-namespace SGFBA.Application.Ususarios;
+namespace SGFBA.Application.UseCases.Ususarios;
 
 public class SenhaValidator<T> : PropertyValidator<T, string>
 {

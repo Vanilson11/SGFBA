@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SGFBA.Application.Ususarios.Registrar;
+using SGFBA.Application.UseCases.Ususarios.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 

@@ -1,7 +1,7 @@
 ﻿using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 
-namespace SGFBA.Application.Ususarios.Registrar;
+namespace SGFBA.Application.UseCases.Ususarios.Registrar;
 
 public interface IRegistrarUsuarioUseCase
 {
