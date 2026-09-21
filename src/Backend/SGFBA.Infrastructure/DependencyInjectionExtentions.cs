@@ -6,10 +6,12 @@ using SGFBA.Domain.Repositories.Fichas;
 using SGFBA.Domain.Repositories.Usuarios;
 using SGFBA.Domain.Security.Criptography;
 using SGFBA.Domain.Security.Tokens;
+using SGFBA.Domain.Services.LoggedUser;
 using SGFBA.Infrastructure.DataAccess;
 using SGFBA.Infrastructure.DataAccess.Repositories;
 using SGFBA.Infrastructure.Security.Criptography;
 using SGFBA.Infrastructure.Security.Tokens;
+using SGFBA.Infrastructure.Services.LoggedUser;
 
 namespace SGFBA.Infrastructure;
 
@@ -22,6 +24,7 @@ public static class DependencyInjectionExtentions
         AddToken(services, configuration);
 
         services.AddScoped<IPasswordHasher, PasswordHashing>();
+        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
