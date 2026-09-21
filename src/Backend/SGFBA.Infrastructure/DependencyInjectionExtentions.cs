@@ -41,11 +41,16 @@ public static class DependencyInjectionExtentions
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOffWork, UnitOffWork>();
+
         services.AddScoped<IReadOnlyUsuarioRepository, UsuariosRepository>();
         services.AddScoped<IWriteOnlyUsuariosRepository, UsuariosRepository>();
+
         services.AddScoped<IWriteOnlyFichasRepository, FichasRepository>();
+        services.AddScoped<IReadOnlyFichasRepository, FichasRepository>();
+
         services.AddScoped<IWriteOnlyEstudantesRepository, EstudantesRepository>();
         services.AddScoped<IReadOnlyEstudantesRepository, EstudantesRepository>();
+
         services.AddScoped<IWriteOnlyAcoesRepository, AcoesRepository>();
     }
 

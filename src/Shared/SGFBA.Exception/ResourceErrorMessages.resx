@@ -144,6 +144,9 @@
   <data name="ESTUDANTE_NAO_ENCONTRADO" xml:space="preserve">
     <value>Estudante não encontrado.</value>
   </data>
+  <data name="FICHA_NAO_ENCONTRADA" xml:space="preserve">
+    <value>Ficha de Busca Ativa não encontrada.</value>
+  </data>
   <data name="LOGIN_INVALIDO" xml:space="preserve">
     <value>E-mail ou senha informados incorretos.</value>
   </data>

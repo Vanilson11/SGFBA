@@ -13,14 +13,16 @@ namespace SGFBA.Api.Controllers;
 public class AcoesController : ControllerBase
 {
     [HttpPost]
+    [Route("{idFicha}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
     [ProducesResponseType(typeof(ResponseRegistrarAcaoJson), StatusCodes.Status201Created)]
     public async Task<IActionResult> Registrar(
         [FromServices] IRegistrarAcaoUseCase useCase,
-        [FromBody] RequestRegistrarAcaoJson request
+        [FromBody] RequestRegistrarAcaoJson request,
+        [FromRoute] long idFicha
         )
     {
-        var response = await useCase.Executar(request);
+        var response = await useCase.Executar(request, idFicha);
 
         return Created(string.Empty, response);
     }

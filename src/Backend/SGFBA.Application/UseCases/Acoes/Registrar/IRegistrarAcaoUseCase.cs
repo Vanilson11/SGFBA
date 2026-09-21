@@ -5,5 +5,5 @@ namespace SGFBA.Application.UseCases.Acoes.Registrar;
 
 public interface IRegistrarAcaoUseCase
 {
-    Task<ResponseRegistrarAcaoJson> Executar(RequestRegistrarAcaoJson request);
+    Task<ResponseRegistrarAcaoJson> Executar(RequestRegistrarAcaoJson request, long idFicha);
 }

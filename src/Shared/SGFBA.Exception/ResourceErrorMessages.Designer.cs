@@ -142,6 +142,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ficha de Busca Ativa não encontrada..
+        /// </summary>
+        public static string FICHA_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("FICHA_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail ou senha informados incorretos..
         /// </summary>
         public static string LOGIN_INVALIDO {
