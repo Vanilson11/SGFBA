@@ -17,8 +17,28 @@ internal class SGFBADbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Usuario>().ToTable("usuarios");
+
+        modelBuilder.Entity<Estudante>()
+            .HasOne(e => e.Usuario)
+            .WithMany()
+            .HasForeignKey(e => e.UserId);
         modelBuilder.Entity<Estudante>().ToTable("estudantes");
+
+        modelBuilder.Entity<Ficha>()
+            .HasOne(f => f.Usuario)
+            .WithMany()
+            .HasForeignKey(e => e.IdOrientador);
+        modelBuilder.Entity<Ficha>()
+            .HasOne(f => f.Estudante)
+            .WithMany()
+            .HasForeignKey(e => e.IdEstudante);
         modelBuilder.Entity<Ficha>().ToTable("fichas");
+
+
+        modelBuilder.Entity<Acao>()
+            .HasOne(a => a.Ficha)
+            .WithMany()
+            .HasForeignKey(e => e.IdFicha);
         modelBuilder.Entity<Acao>().ToTable("acoes");
     }
 }
