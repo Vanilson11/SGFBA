@@ -11,7 +11,7 @@ public class Estudante
     public DateTime DataNascimento { get; set; }
     public string NomeResponsavel { get; set; } = string.Empty;
     public string TelefoneResponsavel { get; set; } = string.Empty;
-    public bool Ativo { get; set; }
+    public bool Ativo { get; set; } = true;
     public Guid StudentIdentifier { get; set; } = Guid.CreateVersion7();
     public long UserId { get; set; }
     public Usuario Usuario { get; set; } = default!;
