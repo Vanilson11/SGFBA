@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SGFBA.Domain.Repositories;
+using SGFBA.Domain.Repositories.Estudantes;
 using SGFBA.Domain.Repositories.Fichas;
 using SGFBA.Domain.Repositories.Usuarios;
 using SGFBA.Domain.Security.Criptography;
@@ -42,6 +43,7 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IReadOnlyUsuarioRepository, UsuariosRepository>();
         services.AddScoped<IWriteOnlyUsuariosRepository, UsuariosRepository>();
         services.AddScoped<IWriteOnlyFichasRepository, FichasRepository>();
+        services.AddScoped<IWriteOnlyEstudantesRepository, EstudantesRepository>();
     }
 
     private static void AddToken(IServiceCollection services, IConfiguration configuration)
