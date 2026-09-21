@@ -79,6 +79,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A data de nascimento não pode ser do futuro..
+        /// </summary>
+        public static string DATA_NASCIMENTO_INVALID {
+            get {
+                return ResourceManager.GetString("DATA_NASCIMENTO_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail informado é inválido.
         /// </summary>
         public static string EMAIL_INVALIDO {
@@ -201,6 +210,51 @@ namespace SGFBA.Exception {
         public static string STATUS_INVALIDO {
             get {
                 return ResourceManager.GetString("STATUS_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número de telefone não pode conter mais de 11 caracteres.
+        /// </summary>
+        public static string TELEFONE_MAIOR_11_CARACTERES {
+            get {
+                return ResourceManager.GetString("TELEFONE_MAIOR_11_CARACTERES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número de telefone não pode ter menos que dez caracteres..
+        /// </summary>
+        public static string TELEFONE_MENOR_10_CARACTERES {
+            get {
+                return ResourceManager.GetString("TELEFONE_MENOR_10_CARACTERES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número de telefone do responsável é obrigatório..
+        /// </summary>
+        public static string TELEFONE_OBRIGATORIO {
+            get {
+                return ResourceManager.GetString("TELEFONE_OBRIGATORIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turma inválida..
+        /// </summary>
+        public static string TURMA_INVALIDA {
+            get {
+                return ResourceManager.GetString("TURMA_INVALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turno inválido..
+        /// </summary>
+        public static string TURNO_INVALIDO {
+            get {
+                return ResourceManager.GetString("TURNO_INVALIDO", resourceCulture);
             }
         }
         

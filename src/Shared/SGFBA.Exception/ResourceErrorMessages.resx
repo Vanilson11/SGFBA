@@ -123,6 +123,9 @@
   <data name="DATA_FICHA_DO_FUTURO" xml:space="preserve">
     <value>A data da ficha não pode ser do futuro.</value>
   </data>
+  <data name="DATA_NASCIMENTO_INVALID" xml:space="preserve">
+    <value>A data de nascimento não pode ser do futuro.</value>
+  </data>
   <data name="EMAIL_INVALIDO" xml:space="preserve">
     <value>E-mail informado é inválido</value>
   </data>
@@ -164,6 +167,21 @@
   </data>
   <data name="STATUS_INVALIDO" xml:space="preserve">
     <value>Status inválido.</value>
+  </data>
+  <data name="TELEFONE_MAIOR_11_CARACTERES" xml:space="preserve">
+    <value>O número de telefone não pode conter mais de 11 caracteres</value>
+  </data>
+  <data name="TELEFONE_MENOR_10_CARACTERES" xml:space="preserve">
+    <value>O número de telefone não pode ter menos que dez caracteres.</value>
+  </data>
+  <data name="TELEFONE_OBRIGATORIO" xml:space="preserve">
+    <value>O número de telefone do responsável é obrigatório.</value>
+  </data>
+  <data name="TURMA_INVALIDA" xml:space="preserve">
+    <value>Turma inválida.</value>
+  </data>
+  <data name="TURNO_INVALIDO" xml:space="preserve">
+    <value>Turno inválido.</value>
   </data>
   <data name="USUARIO_COM_MATRICULA_EXISTE" xml:space="preserve">
     <value>Usuário já registrado com a matrícula informada.</value>
