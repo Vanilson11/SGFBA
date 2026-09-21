@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CAMPO_500_CARACTERES" xml:space="preserve">
+    <value>O campo não pode ter mais de 500 caracteres.</value>
+  </data>
   <data name="CARGO_INVALIDO" xml:space="preserve">
     <value>Cargo informado é inválido</value>
+  </data>
+  <data name="DATA_ACAO_FUTURO" xml:space="preserve">
+    <value>A data da ação não pode ser do futuro.</value>
   </data>
   <data name="DATA_FICHA_DO_FUTURO" xml:space="preserve">
     <value>A data da ficha não pode ser do futuro.</value>
@@ -179,6 +185,9 @@
   </data>
   <data name="TELEFONE_OBRIGATORIO" xml:space="preserve">
     <value>O número de telefone do responsável é obrigatório.</value>
+  </data>
+  <data name="TIPO_ACAO_INVALIDO" xml:space="preserve">
+    <value>Tipo de ação inválida</value>
   </data>
   <data name="TURMA_INVALIDA" xml:space="preserve">
     <value>Turma inválida.</value>

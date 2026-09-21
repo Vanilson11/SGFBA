@@ -61,11 +61,29 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O campo não pode ter mais de 500 caracteres..
+        /// </summary>
+        public static string CAMPO_500_CARACTERES {
+            get {
+                return ResourceManager.GetString("CAMPO_500_CARACTERES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cargo informado é inválido.
         /// </summary>
         public static string CARGO_INVALIDO {
             get {
                 return ResourceManager.GetString("CARGO_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data da ação não pode ser do futuro..
+        /// </summary>
+        public static string DATA_ACAO_FUTURO {
+            get {
+                return ResourceManager.GetString("DATA_ACAO_FUTURO", resourceCulture);
             }
         }
         
@@ -246,6 +264,15 @@ namespace SGFBA.Exception {
         public static string TELEFONE_OBRIGATORIO {
             get {
                 return ResourceManager.GetString("TELEFONE_OBRIGATORIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de ação inválida.
+        /// </summary>
+        public static string TIPO_ACAO_INVALIDO {
+            get {
+                return ResourceManager.GetString("TIPO_ACAO_INVALIDO", resourceCulture);
             }
         }
         
