@@ -106,6 +106,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail ou senha informados incorretos..
+        /// </summary>
+        public static string LOGIN_INVALIDO {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O número de matrícula deve ter 10 caracteres.
         /// </summary>
         public static string MATRICULA_10_CARACTERES {

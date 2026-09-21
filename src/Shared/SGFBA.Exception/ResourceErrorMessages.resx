@@ -132,6 +132,9 @@
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Erro desconhecido</value>
   </data>
+  <data name="LOGIN_INVALIDO" xml:space="preserve">
+    <value>E-mail ou senha informados incorretos.</value>
+  </data>
   <data name="MATRICULA_10_CARACTERES" xml:space="preserve">
     <value>O número de matrícula deve ter 10 caracteres</value>
   </data>

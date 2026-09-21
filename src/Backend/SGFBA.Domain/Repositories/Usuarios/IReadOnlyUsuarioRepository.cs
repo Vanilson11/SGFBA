@@ -1,7 +1,9 @@
-﻿namespace SGFBA.Domain.Repositories.Usuarios;
+﻿using SGFBA.Domain.Entities;
+
+namespace SGFBA.Domain.Repositories.Usuarios;
 
 public interface IReadOnlyUsuarioRepository
 {
-    Task<bool> BuscarPorEmail(string email);
+    Task<Usuario?> BuscarPorEmail(string email);
     Task<bool> BuscarPorMatricula(string matricula);
 }

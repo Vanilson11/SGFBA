@@ -62,7 +62,7 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
         var resultado = new UsuarioValidator().Validate(request);
         var usuarioComEmailExiste = await _readOnlyUsuarioRepository.BuscarPorEmail(request.Email);
 
-        if (usuarioComEmailExiste)
+        if (usuarioComEmailExiste is null)
         {
             resultado.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.USUARIO_JA_REGISTRADO));
         }
