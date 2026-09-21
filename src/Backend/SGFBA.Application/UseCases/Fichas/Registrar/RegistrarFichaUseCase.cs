@@ -3,7 +3,10 @@ using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 using SGFBA.Domain.Entities;
 using SGFBA.Domain.Repositories;
+using SGFBA.Domain.Repositories.Estudantes;
 using SGFBA.Domain.Repositories.Fichas;
+using SGFBA.Domain.Services.LoggedUser;
+using SGFBA.Exception;
 using SGFBA.Exception.ExceptionsBase;
 
 namespace SGFBA.Application.UseCases.Fichas.Registrar;
@@ -11,24 +14,36 @@ namespace SGFBA.Application.UseCases.Fichas.Registrar;
 public class RegistrarFichaUseCase : IRegistrarFichaUseCase
 {
     private readonly IWriteOnlyFichasRepository _writeOnlyFichasRepository;
+    private readonly IReadOnlyEstudantesRepository _readOnlyEstudantesRepository;
+    private readonly ILoggedUser _loggedUser;
     private readonly IUnitOffWork _unitOffWork;
 
     public RegistrarFichaUseCase(
         IWriteOnlyFichasRepository writeOnlyFichasRepository,
+        IReadOnlyEstudantesRepository readOnlyEstudantesRepository,
+        ILoggedUser loggedUser,
         IUnitOffWork unitOffWork
         )
     {
         _writeOnlyFichasRepository = writeOnlyFichasRepository;
+        _readOnlyEstudantesRepository = readOnlyEstudantesRepository;
+        _loggedUser = loggedUser;
         _unitOffWork = unitOffWork;
     }
-    public async Task<ResponseRegistrarFichaJson> Executar(RequestRegistrarFichaJson request)
+    public async Task<ResponseRegistrarFichaJson> Executar(RequestRegistrarFichaJson request, long id)
     {
         Validar_Request(request);
 
         var ficha = request.Adapt<Ficha>();
-        //buscar estudante
-        //associar estudante à ficha
-        //associar coordenador/orientador à ficha
+        var estudante = await _readOnlyEstudantesRepository.BuscarPorId(id);
+
+        if (estudante is null) throw new NotFoundException(ResourceErrorMessages.ESTUDANTE_NAO_ENCONTRADO);
+
+        ficha.IdEstudante = estudante.Id;
+
+        var usuario = await _loggedUser.Get();
+
+        ficha.IdOrientador = usuario.Id;
 
         await _writeOnlyFichasRepository.Adicionar(ficha);
 
@@ -36,9 +51,9 @@ public class RegistrarFichaUseCase : IRegistrarFichaUseCase
 
         return new ResponseRegistrarFichaJson
         {
-            Id = 1,
-            DataAbertura = request.DataAbertura,
-            Status = request.Status
+            Id = ficha.Id,
+            DataAbertura = ficha.DataAbertura,
+            Status = (Communication.Enums.StatusFicha)ficha.Status
         };
     }
 

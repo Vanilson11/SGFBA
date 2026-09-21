@@ -115,6 +115,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estudante não encontrado..
+        /// </summary>
+        public static string ESTUDANTE_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("ESTUDANTE_NAO_ENCONTRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail ou senha informados incorretos..
         /// </summary>
         public static string LOGIN_INVALIDO {

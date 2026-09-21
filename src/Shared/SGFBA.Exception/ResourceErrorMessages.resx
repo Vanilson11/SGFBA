@@ -135,6 +135,9 @@
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Erro desconhecido</value>
   </data>
+  <data name="ESTUDANTE_NAO_ENCONTRADO" xml:space="preserve">
+    <value>Estudante não encontrado.</value>
+  </data>
   <data name="LOGIN_INVALIDO" xml:space="preserve">
     <value>E-mail ou senha informados incorretos.</value>
   </data>

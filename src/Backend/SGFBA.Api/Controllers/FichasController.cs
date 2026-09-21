@@ -13,6 +13,7 @@ namespace SGFBA.Api.Controllers;
 public class FichasController : ControllerBase
 {
     [HttpPost]
+    [Route("{idEstudante}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -20,10 +21,11 @@ public class FichasController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Registrar(
         [FromServices] IRegistrarFichaUseCase useCase,
-        [FromBody] RequestRegistrarFichaJson request
+        [FromBody] RequestRegistrarFichaJson request,
+        [FromRoute] long idEstudante
         )
     {
-        var response = await useCase.Executar(request);
+        var response = await useCase.Executar(request, idEstudante);
 
         return Created(string.Empty, response);
     }

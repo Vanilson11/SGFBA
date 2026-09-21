@@ -5,5 +5,5 @@ namespace SGFBA.Application.UseCases.Fichas.Registrar;
 
 public interface IRegistrarFichaUseCase
 {
-    Task<ResponseRegistrarFichaJson> Executar(RequestRegistrarFichaJson request);
+    Task<ResponseRegistrarFichaJson> Executar(RequestRegistrarFichaJson request, long id);
 }
