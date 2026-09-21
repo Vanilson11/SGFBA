@@ -120,6 +120,9 @@
   <data name="CARGO_INVALIDO" xml:space="preserve">
     <value>Cargo informado é inválido</value>
   </data>
+  <data name="DATA_FICHA_DO_FUTURO" xml:space="preserve">
+    <value>A data da ficha não pode ser do futuro.</value>
+  </data>
   <data name="EMAIL_INVALIDO" xml:space="preserve">
     <value>E-mail informado é inválido</value>
   </data>
@@ -138,6 +141,9 @@
   <data name="MATRICULA_OBRIGATORIA" xml:space="preserve">
     <value>O número de matrícula é obrigatório</value>
   </data>
+  <data name="MOTIVO_INVALIDO" xml:space="preserve">
+    <value>Motivo inválido.</value>
+  </data>
   <data name="NOME_MAIOR_100_CARACTERES" xml:space="preserve">
     <value>O nome não pode ter mais de cem caracteres</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="SENHA_OBRIGATORIA" xml:space="preserve">
     <value>A senha é obrigatória</value>
+  </data>
+  <data name="STATUS_INVALIDO" xml:space="preserve">
+    <value>Status inválido.</value>
   </data>
   <data name="USUARIO_COM_MATRICULA_EXISTE" xml:space="preserve">
     <value>Usuário já registrado com a matrícula informada.</value>

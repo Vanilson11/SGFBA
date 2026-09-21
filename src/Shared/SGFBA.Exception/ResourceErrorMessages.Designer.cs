@@ -70,6 +70,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A data da ficha não pode ser do futuro..
+        /// </summary>
+        public static string DATA_FICHA_DO_FUTURO {
+            get {
+                return ResourceManager.GetString("DATA_FICHA_DO_FUTURO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail informado é inválido.
         /// </summary>
         public static string EMAIL_INVALIDO {
@@ -124,6 +133,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Motivo inválido..
+        /// </summary>
+        public static string MOTIVO_INVALIDO {
+            get {
+                return ResourceManager.GetString("MOTIVO_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome não pode ter mais de cem caracteres.
         /// </summary>
         public static string NOME_MAIOR_100_CARACTERES {
@@ -165,6 +183,15 @@ namespace SGFBA.Exception {
         public static string SENHA_OBRIGATORIA {
             get {
                 return ResourceManager.GetString("SENHA_OBRIGATORIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status inválido..
+        /// </summary>
+        public static string STATUS_INVALIDO {
+            get {
+                return ResourceManager.GetString("STATUS_INVALIDO", resourceCulture);
             }
         }
         
