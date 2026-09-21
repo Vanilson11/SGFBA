@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Application.UseCases.Fichas.Registrar;
@@ -19,5 +20,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IRegistrarFichaUseCase, RegistrarFichaUseCase>();
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IRegistrarEstudanteUseCase, RegistrarEstudanteUseCase>();
+        services.AddScoped<IRegistrarAcaoUseCase, RegistrarAcaoUseCase>();
     }
 }
