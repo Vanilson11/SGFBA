@@ -1,9 +1,10 @@
-﻿using SGFBA.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SGFBA.Domain.Entities;
 using SGFBA.Domain.Repositories.Estudantes;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
 
-internal class EstudantesRepository : IWriteOnlyEstudantesRepository
+internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyEstudantesRepository
 {
     private readonly SGFBADbContext _dbContext;
 
@@ -12,4 +13,9 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository
         _dbContext = dbContext;
     }
     public async Task Adicionar(Estudante estudante) => await _dbContext.Estudantes.AddAsync(estudante);
+
+    public async Task<Estudante?> BuscarPorId(long id)
+    {
+        return await _dbContext.Estudantes.AsNoTracking().FirstOrDefaultAsync(estudante => estudante.Ativo && estudante.Id.Equals(id));
+    }
 }

@@ -44,6 +44,7 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IWriteOnlyUsuariosRepository, UsuariosRepository>();
         services.AddScoped<IWriteOnlyFichasRepository, FichasRepository>();
         services.AddScoped<IWriteOnlyEstudantesRepository, EstudantesRepository>();
+        services.AddScoped<IReadOnlyEstudantesRepository, EstudantesRepository>();
     }
 
     private static void AddToken(IServiceCollection services, IConfiguration configuration)
