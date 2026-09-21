@@ -204,4 +204,7 @@
   <data name="USUARIO_JA_REGISTRADO" xml:space="preserve">
     <value>Usuário já registrado com o e-mail informado</value>
   </data>
+  <data name="USUARIO_NAO_ENCONTRADO" xml:space="preserve">
+    <value>Usuário não encontrado.</value>
+  </data>
 </root>

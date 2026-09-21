@@ -320,5 +320,14 @@ namespace SGFBA.Exception {
                 return ResourceManager.GetString("USUARIO_JA_REGISTRADO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário não encontrado..
+        /// </summary>
+        public static string USUARIO_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("USUARIO_NAO_ENCONTRADO", resourceCulture);
+            }
+        }
     }
 }
