@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
+using SGFBA.Domain.Enums;
 
 namespace SGFBA.Api.Controllers;
 
@@ -20,5 +23,21 @@ public class UsuariosController : ControllerBase
         var response = await useCase.Executar(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseBuscarUsuarioJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarPorId(
+        [FromServices] IBuscarUsuarioPorIdUseCase useCase,
+        [FromRoute] long id)
+    {
+        var response = await useCase.Executar(id);
+
+        return Ok(response);
     }
 }

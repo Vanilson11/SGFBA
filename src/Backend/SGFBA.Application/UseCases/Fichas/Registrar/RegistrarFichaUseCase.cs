@@ -43,7 +43,7 @@ public class RegistrarFichaUseCase : IRegistrarFichaUseCase
 
         var usuario = await _loggedUser.Get();
 
-        ficha.IdOrientador = usuario.Id;
+        ficha.IdUsuario = usuario.Id;
 
         await _writeOnlyFichasRepository.Adicionar(ficha);
 

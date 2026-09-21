@@ -10,7 +10,7 @@ public class Ficha
     public StatusFicha Status { get; set; }
     public string? Observacao { get; set; }
     public Guid FichaIdentifier { get; set; } = Guid.CreateVersion7();
-    public long IdOrientador { get; set; }//trocar o nome para IdUsuario
+    public long IdUsuario { get; set; }//trocar o nome para IdUsuario
     public Usuario Usuario { get; set; } = default!;
     public long IdEstudante { get; set; }
     public Estudante Estudante { get; set; } = default!;
