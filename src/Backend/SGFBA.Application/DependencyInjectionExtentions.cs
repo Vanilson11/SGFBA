@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SGFBA.Application.UseCases.DoLogin;
 using SGFBA.Application.UseCases.Fichas.Registrar;
 using SGFBA.Application.UseCases.Ususarios.Registrar;
 
@@ -15,5 +16,6 @@ public static class DependencyInjectionExtentions
     {
         services.AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>();
         services.AddScoped<IRegistrarFichaUseCase, RegistrarFichaUseCase>();
+        services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
     }
 }

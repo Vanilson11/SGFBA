@@ -3,7 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using SGFBA.Api.Converters;
 using SGFBA.Api.Fillters;
+using SGFBA.Api.Token;
 using SGFBA.Application;
+using SGFBA.Domain.Security.Tokens;
 using SGFBA.Infrastructure;
 using SGFBA.Infrastructure.Migrations;
 using System.Text;
@@ -53,6 +55,9 @@ builder.Services.AddAuthentication(config => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey!))
     };
 });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 
 var app = builder.Build();
 
