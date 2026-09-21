@@ -31,7 +31,7 @@ public class UsuariosController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseUsuariosJson), StatusCodes.Status200OK)]
-    public async Task<IActionResult> BuscarTodos([FromServices] IBuscarTodosAtivosUseCase useCase)
+    public async Task<IActionResult> BuscarTodosAtivos([FromServices] IBuscarTodosAtivosUseCase useCase)
     {
         var response = await useCase.Executar();
 
