@@ -27,7 +27,7 @@ internal class SGFBADbContext : DbContext
         modelBuilder.Entity<Ficha>()
             .HasOne(f => f.Usuario)
             .WithMany()
-            .HasForeignKey(e => e.IdOrientador);
+            .HasForeignKey(e => e.IdUsuario);
         modelBuilder.Entity<Ficha>()
             .HasOne(f => f.Estudante)
             .WithMany()

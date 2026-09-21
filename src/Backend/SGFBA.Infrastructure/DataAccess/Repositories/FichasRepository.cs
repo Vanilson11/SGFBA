@@ -17,6 +17,6 @@ internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRep
     public async Task<Ficha?> BuscaPorId(long idUsuario, long idFicha)
     {
         return await _dbContext.Fichas.AsNoTracking()
-            .FirstOrDefaultAsync(ficha => ficha.IdOrientador.Equals(idUsuario) && ficha.Id.Equals(idFicha));
+            .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
     }
 }
