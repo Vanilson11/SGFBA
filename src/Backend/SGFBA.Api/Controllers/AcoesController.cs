@@ -15,7 +15,11 @@ public class AcoesController : ControllerBase
     [HttpPost]
     [Route("{idFicha}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseRegistrarAcaoJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Registrar(
         [FromServices] IRegistrarAcaoUseCase useCase,
         [FromBody] RequestRegistrarAcaoJson request,
