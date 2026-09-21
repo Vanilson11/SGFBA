@@ -26,7 +26,7 @@ public class UsuariosController : ControllerBase
         return Created(string.Empty, response);
     }
 
-    [HttpGet]
+    [HttpGet("ativos")]
     [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
