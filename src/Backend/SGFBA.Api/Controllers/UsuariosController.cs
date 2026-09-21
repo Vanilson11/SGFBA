@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
+using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -23,6 +24,18 @@ public class UsuariosController : ControllerBase
         var response = await useCase.Executar(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseUsuariosJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarTodos([FromServices] IBuscarTodosUseCase useCase)
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
     }
 
     [HttpGet]
