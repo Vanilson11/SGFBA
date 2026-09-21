@@ -2,5 +2,5 @@
 
 public class ResponseUsuariosJson
 {
-    List<ResponseShortUsuarioJson> Usuarios { get; set; } = [];
+    public List<ResponseShortUsuarioJson> Usuarios { get; set; } = [];
 }
