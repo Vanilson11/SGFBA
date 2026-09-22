@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
+using SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodosAtivos;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
@@ -39,5 +40,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IAlterarSenhaUsuarioUseCase, AlterarSenhaUsuarioUseCase>();
         services.AddScoped<IBuscarTodosEstudantesUseCase, BuscarTodosEstudantesUseCase>();
         services.AddScoped<IBuscarTodosEstudantesAtivosUseCase, BuscarTodosEstudantesAtivosUseCase>();
+        services.AddScoped<IBuscarEstudantePorIdUseCase, BuscarEstudantePorIdUseCase>();
     }
 }
