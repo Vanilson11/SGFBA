@@ -259,6 +259,15 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A senha atual informada não confere com a senha já registrada..
+        /// </summary>
+        public static string SENHA_ATUAL_NAO_CONFERE {
+            get {
+                return ResourceManager.GetString("SENHA_ATUAL_NAO_CONFERE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A senha deve conter no mínimo 8 caracteres, sendo uma letra maiúscula, uma letra minúscula, um número e um caracter especial(ex: !,#,@,$,.).
         /// </summary>
         public static string SENHA_INVALIDA {
