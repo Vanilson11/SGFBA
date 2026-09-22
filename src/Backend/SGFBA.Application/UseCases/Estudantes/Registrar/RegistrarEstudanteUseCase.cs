@@ -25,7 +25,7 @@ public class RegistrarEstudanteUseCase : IRegistrarEstudanteUseCase
         _writeOnlyEstudantesRepository = writeOnlyEstudantesRepository;
         _unitOffWork = unitOffWork;
     }
-    public async Task<ResponseRegistrarEstudanteJson> Executar(RequestRegistrarEstudanteJson request)
+    public async Task<ResponseRegistrarEstudanteJson> Executar(RequestEstudanteJson request)
     {
         Validate_Request(request);
 
@@ -48,7 +48,7 @@ public class RegistrarEstudanteUseCase : IRegistrarEstudanteUseCase
         };
     }
 
-    private void Validate_Request(RequestRegistrarEstudanteJson request)
+    private void Validate_Request(RequestEstudanteJson request)
     {
         var resultado = new EstudanteValidator().Validate(request);
 

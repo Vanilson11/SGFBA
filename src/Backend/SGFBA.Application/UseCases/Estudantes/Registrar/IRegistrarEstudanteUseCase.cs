@@ -5,5 +5,5 @@ namespace SGFBA.Application.UseCases.Estudantes.Registrar;
 
 public interface IRegistrarEstudanteUseCase
 {
-    Task<ResponseRegistrarEstudanteJson> Executar(RequestRegistrarEstudanteJson request);
+    Task<ResponseRegistrarEstudanteJson> Executar(RequestEstudanteJson request);
 }

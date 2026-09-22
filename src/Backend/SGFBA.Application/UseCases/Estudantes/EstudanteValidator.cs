@@ -4,7 +4,7 @@ using SGFBA.Exception;
 
 namespace SGFBA.Application.UseCases.Estudantes;
 
-public class EstudanteValidator : AbstractValidator<RequestRegistrarEstudanteJson>
+public class EstudanteValidator : AbstractValidator<RequestEstudanteJson>
 {
     public EstudanteValidator()
     {

@@ -80,14 +80,15 @@ public class EstudantesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseRegistrarEstudanteJson), StatusCodes.Status201Created)]
-    public async Task<IActionResult> Registrar([FromServices] IRegistrarEstudanteUseCase useCase, [FromBody] RequestRegistrarEstudanteJson request)
+    public async Task<IActionResult> Registrar([FromServices] IRegistrarEstudanteUseCase useCase, [FromBody] RequestEstudanteJson request)
     {
         var response = await useCase.Executar(request);
 
         return Created(string.Empty, response);
     }
 
-    [HttpPut("{idEstudante}")]
+    [HttpPut]
+    [Route("{idEstudante}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR},{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -96,7 +97,7 @@ public class EstudantesController : ControllerBase
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizarEstudante(
         [FromServices] IAtualizarEstudanteUseCase useCase,
-        [FromBody] RequestAtualizarEstudanteJson request,
+        [FromBody] RequestEstudanteJson request,
         [FromRoute] long idEstudante
         )
     {

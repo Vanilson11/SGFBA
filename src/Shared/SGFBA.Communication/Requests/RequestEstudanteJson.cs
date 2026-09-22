@@ -2,7 +2,7 @@
 
 namespace SGFBA.Communication.Requests;
 
-public class RequestRegistrarEstudanteJson
+public class RequestEstudanteJson
 {
     public string Nome { get; set; } = string.Empty;
     public Turma Turma { get; set; }

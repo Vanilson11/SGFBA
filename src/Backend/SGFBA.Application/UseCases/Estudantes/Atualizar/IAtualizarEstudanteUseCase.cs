@@ -4,5 +4,5 @@ namespace SGFBA.Application.UseCases.Estudantes.Atualizar;
 
 public interface IAtualizarEstudanteUseCase
 {
-    Task Executar(RequestAtualizarEstudanteJson request, long idEstudante);
+    Task Executar(RequestEstudanteJson request, long idEstudante);
 }
