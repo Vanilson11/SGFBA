@@ -51,6 +51,7 @@ public static class DependencyInjectionExtentions
 
         services.AddScoped<IWriteOnlyEstudantesRepository, EstudantesRepository>();
         services.AddScoped<IReadOnlyEstudantesRepository, EstudantesRepository>();
+        services.AddScoped<IUpdateOnlyEstudantesRepository, EstudantesRepository>();
 
         services.AddScoped<IWriteOnlyAcoesRepository, AcoesRepository>();
     }

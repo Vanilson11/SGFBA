@@ -4,7 +4,7 @@ using SGFBA.Domain.Repositories.Estudantes;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
 
-internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyEstudantesRepository
+internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyEstudantesRepository, IUpdateOnlyEstudantesRepository
 {
     private readonly SGFBADbContext _dbContext;
 
@@ -14,9 +14,14 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
     }
     public async Task Adicionar(Estudante estudante) => await _dbContext.Estudantes.AddAsync(estudante);
 
-    public async Task<Estudante?> BuscarPorId(long id)
+    async Task<Estudante?> IReadOnlyEstudantesRepository.BuscarPorId(long id)
     {
         return await _dbContext.Estudantes.AsNoTracking().IgnoreQueryFilters().FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
+    }
+
+    async Task<Estudante?> IUpdateOnlyEstudantesRepository.BuscarPorId(long id)
+    {
+        return await _dbContext.Estudantes.FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
     }
 
     public async Task<Estudante?> BuscarAtivoPorId(long id)
@@ -32,5 +37,10 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
     public async Task<List<Estudante>> BuscarTodosAtivos()
     {
         return await _dbContext.Estudantes.AsNoTracking().ToListAsync();
+    }
+
+    public void Atualizar(Estudante estudante)
+    {
+        _dbContext.Estudantes.Update(estudante);
     }
 }
