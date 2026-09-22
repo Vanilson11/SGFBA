@@ -2,7 +2,7 @@
 
 namespace SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 
-public interface IBuscarEstudantePorIdUseCase
+public interface IBuscarEstudanteAtivoPorIdUseCase
 {
     Task<ResponseEstudanteJson> Executar(long idEstudante);
 }

@@ -40,6 +40,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IAlterarSenhaUsuarioUseCase, AlterarSenhaUsuarioUseCase>();
         services.AddScoped<IBuscarTodosEstudantesUseCase, BuscarTodosEstudantesUseCase>();
         services.AddScoped<IBuscarTodosEstudantesAtivosUseCase, BuscarTodosEstudantesAtivosUseCase>();
-        services.AddScoped<IBuscarEstudantePorIdUseCase, BuscarEstudantePorIdUseCase>();
+        services.AddScoped<IBuscarEstudanteAtivoPorIdUseCase, BuscarEstudanteAtivoPorIdUseCase>();
     }
 }

@@ -35,7 +35,7 @@ public class RegistrarFichaUseCase : IRegistrarFichaUseCase
         Validar_Request(request);
 
         var ficha = request.Adapt<Ficha>();
-        var estudante = await _readOnlyEstudantesRepository.BuscarPorId(id);
+        var estudante = await _readOnlyEstudantesRepository.BuscarAtivoPorId(id);
 
         if (estudante is null) throw new NotFoundException(ResourceErrorMessages.ESTUDANTE_NAO_ENCONTRADO);
 

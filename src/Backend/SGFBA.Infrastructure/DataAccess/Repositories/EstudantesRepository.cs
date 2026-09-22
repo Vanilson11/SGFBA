@@ -14,9 +14,9 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
     }
     public async Task Adicionar(Estudante estudante) => await _dbContext.Estudantes.AddAsync(estudante);
 
-    public async Task<Estudante?> BuscarPorId(long id)
+    public async Task<Estudante?> BuscarAtivoPorId(long id)
     {
-        return await _dbContext.Estudantes.AsNoTracking().FirstOrDefaultAsync(estudante => estudante.Ativo && estudante.Id.Equals(id));
+        return await _dbContext.Estudantes.AsNoTracking().FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
     }
 
     public async Task<List<Estudante>> BuscarTodos()

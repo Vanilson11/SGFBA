@@ -41,14 +41,14 @@ public class EstudantesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{idEstudante}")]
+    [Route("ativo/{idEstudante}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR},{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseEstudanteJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> BuscarPorId(
-        [FromServices] IBuscarEstudantePorIdUseCase useCase,
+    public async Task<IActionResult> BuscarAtivoPorId(
+        [FromServices] IBuscarEstudanteAtivoPorIdUseCase useCase,
         [FromRoute] long idEstudante)
     {
         var response = await useCase.Executar(idEstudante);
