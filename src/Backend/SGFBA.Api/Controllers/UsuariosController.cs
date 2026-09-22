@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Ususarios.AlterarSenha;
 using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
@@ -100,6 +101,21 @@ public class UsuariosController : ControllerBase
         )
     {
         await useCase.Executar(request, idUsuario);
+
+        return NoContent();
+    }
+
+    [HttpPut("alterar-senha")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> AlterarSenha(
+        [FromServices] IAlterarSenhaUsuarioUseCase useCase,
+        [FromBody] RequestAlterarSenhaJson request
+        )
+    {
+        await useCase.Executar(request);
 
         return NoContent();
     }

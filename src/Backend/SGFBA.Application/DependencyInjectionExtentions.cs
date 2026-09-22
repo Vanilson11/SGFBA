@@ -3,6 +3,7 @@ using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Application.UseCases.Fichas.Registrar;
+using SGFBA.Application.UseCases.Ususarios.AlterarSenha;
 using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
@@ -33,5 +34,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IAtualizarPerfilUseCase, AtualizarPerfilUseCase>();
         services.AddScoped<IAtualizarUsuarioUseCase, AtualizarUsuarioUseCase>();
         services.AddScoped<IDesativarUsuarioUseCase, DesativarUsuarioUseCase>();
+        services.AddScoped<IAlterarSenhaUsuarioUseCase, AlterarSenhaUsuarioUseCase>();
     }
 }
