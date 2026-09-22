@@ -18,4 +18,9 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
     {
         return await _dbContext.Estudantes.AsNoTracking().FirstOrDefaultAsync(estudante => estudante.Ativo && estudante.Id.Equals(id));
     }
+
+    public async Task<List<Estudante>> BuscarTodos()
+    {
+        return await _dbContext.Estudantes.AsNoTracking().IgnoreQueryFilters().ToListAsync();
+    }
 }
