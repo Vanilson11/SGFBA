@@ -3,7 +3,7 @@ using SGFBA.Domain.Repositories.Estudantes;
 using SGFBA.Exception;
 using SGFBA.Exception.ExceptionsBase;
 
-namespace SGFBA.Application.UseCases.Estudantes.BuscarPorId;
+namespace SGFBA.Application.UseCases.Estudantes.BuscarAtivoPorId;
 
 public class BuscarEstudanteAtivoPorIdUseCase : IBuscarEstudanteAtivoPorIdUseCase
 {
@@ -13,13 +13,13 @@ public class BuscarEstudanteAtivoPorIdUseCase : IBuscarEstudanteAtivoPorIdUseCas
     {
         _readOnlyEstudantesRepository = readOnlyEstudantesRepository;
     }
-    public async Task<ResponseEstudanteJson> Executar(long idEstudante)
+    public async Task<ResponseEstudanteAtivoJson> Executar(long idEstudante)
     {
         var estudante = await _readOnlyEstudantesRepository.BuscarAtivoPorId(idEstudante);
 
         if (estudante is null) throw new NotFoundException(ResourceErrorMessages.ESTUDANTE_NAO_ENCONTRADO);
 
-        return new ResponseEstudanteJson
+        return new ResponseEstudanteAtivoJson
         {
             Id = estudante.Id,
             Nome = estudante.Nome,
@@ -28,7 +28,6 @@ public class BuscarEstudanteAtivoPorIdUseCase : IBuscarEstudanteAtivoPorIdUseCas
             DataNascimento = estudante.DataNascimento,
             NomeResponsavel = estudante.NomeResponsavel,
             TelefoneResponsavel = estudante.TelefoneResponsavel,
-            Ativo = estudante.Ativo
         };
     }
 }

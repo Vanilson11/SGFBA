@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Estudantes.BuscarAtivoPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodosAtivos;
@@ -45,10 +46,26 @@ public class EstudantesController : ControllerBase
     [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR},{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(typeof(ResponseEstudanteJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseEstudanteAtivoJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> BuscarAtivoPorId(
         [FromServices] IBuscarEstudanteAtivoPorIdUseCase useCase,
+        [FromRoute] long idEstudante)
+    {
+        var response = await useCase.Executar(idEstudante);
+
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("{idEstudante}")]
+    [Authorize(Roles = $"{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseEstudanteJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarPorId(
+        [FromServices] IBuscarEstudantePorIdeUseCase useCase,
         [FromRoute] long idEstudante)
     {
         var response = await useCase.Executar(idEstudante);
