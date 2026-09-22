@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
@@ -79,6 +80,25 @@ public class UsuariosController : ControllerBase
         [FromBody] RequestAtualizarPerfilJson request)
     {
         await useCase.Executar(request);
+
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route("{idUsuario}")]
+    [Authorize(Roles = Roles.ADMIN)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Atualizar(
+        [FromServices] IAtualizarUsuarioUseCase useCase,
+        [FromBody] RequestAtualizarUsuarioJson request,
+        [FromRoute] long idUsuario
+        )
+    {
+        await useCase.Executar(request, idUsuario);
 
         return NoContent();
     }
