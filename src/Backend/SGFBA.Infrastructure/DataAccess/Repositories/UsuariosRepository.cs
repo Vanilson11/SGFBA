@@ -4,7 +4,7 @@ using SGFBA.Domain.Repositories.Usuarios;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
 
-internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuariosRepository
+internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuariosRepository, IUpdateOnlyUsuariosRepository
 {
     private readonly SGFBADbContext _dbContext;
 
@@ -38,5 +38,10 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
     public async Task<List<Usuario>> BuscarTodosAtivos()
     {
         return await _dbContext.Usuarios.AsNoTracking().Where(usuario => usuario.Ativo).ToListAsync();
+    }
+
+    public void Atualizar(Usuario usuario)
+    {
+        _dbContext.Usuarios.Update(usuario);
     }
 }

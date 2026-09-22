@@ -1,6 +1,8 @@
 ﻿using FluentValidation.Results;
+using Mapster;
 using SGFBA.Communication.Requests;
 using SGFBA.Domain.Entities;
+using SGFBA.Domain.Repositories;
 using SGFBA.Domain.Repositories.Usuarios;
 using SGFBA.Domain.Services.LoggedUser;
 using SGFBA.Exception;
@@ -11,20 +13,35 @@ namespace SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 public class AtualizarPerfilUseCase : IAtualizarPerfilUseCase
 {
     private readonly IReadOnlyUsuarioRepository _readOnlyUsuarioRepository;
+    private readonly IUpdateOnlyUsuariosRepository _updateOnlyUsuariosRepository;
     private readonly ILoggedUser _loggedUser;
+    private readonly IUnitOffWork _unitOffWork;
 
     public AtualizarPerfilUseCase(
         IReadOnlyUsuarioRepository readOnlyUsuarioRepository,
-        ILoggedUser loggedUser)
+        IUpdateOnlyUsuariosRepository updateOnlyUsuariosRepository,
+        ILoggedUser loggedUser,
+        IUnitOffWork unitOffWork)
     {
         _readOnlyUsuarioRepository = readOnlyUsuarioRepository;
+        _updateOnlyUsuariosRepository = updateOnlyUsuariosRepository;
         _loggedUser = loggedUser;
+        _unitOffWork = unitOffWork;
     }
     public async Task Executar(RequestAtualizarPerfilJson request)
     {
         var usuario = await _loggedUser.Get();
         
         await Validar_Requisição(request, usuario);
+
+        usuario.Nome = request.Nome;
+        usuario.Matricula = request.Matricula;
+        usuario.Cargo = (Domain.Enums.CargoUsuario)request.Cargo;
+        usuario.Email = request.Email;
+
+        _updateOnlyUsuariosRepository.Atualizar(usuario);
+
+        await _unitOffWork.Commit();
     }
 
     private async Task Validar_Requisição(RequestAtualizarPerfilJson request, Usuario usuario)
