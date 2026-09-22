@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Estudantes.Atualizar;
 using SGFBA.Application.UseCases.Estudantes.BuscarAtivoPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
@@ -84,5 +85,23 @@ public class EstudantesController : ControllerBase
         var response = await useCase.Executar(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpPut("{idEstudante}")]
+    [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR},{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> AtualizarEstudante(
+        [FromServices] IAtualizarEstudanteUseCase useCase,
+        [FromBody] RequestAtualizarEstudanteJson request,
+        [FromRoute] long idEstudante
+        )
+    {
+        await useCase.Executar(request, idEstudante);
+
+        return NoContent();
     }
 }
