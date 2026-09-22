@@ -5,6 +5,7 @@ using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
+using SGFBA.Application.UseCases.Ususarios.Desativar;
 using SGFBA.Application.UseCases.Ususarios.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -99,6 +100,23 @@ public class UsuariosController : ControllerBase
         )
     {
         await useCase.Executar(request, idUsuario);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{idUsuario}")]
+    [Authorize(Roles = Roles.ADMIN)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Desativar(
+        [FromServices] IDesativarUsuarioUseCase useCase,
+        [FromRoute] long idUsuario
+        )
+    {
+        await useCase.Executar(idUsuario);
 
         return NoContent();
     }

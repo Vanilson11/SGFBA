@@ -8,6 +8,7 @@ using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
+using SGFBA.Application.UseCases.Ususarios.Desativar;
 using SGFBA.Application.UseCases.Ususarios.Registrar;
 
 namespace SGFBA.Application;
@@ -31,5 +32,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarTodosUseCase, BuscarTodosUseCase>();
         services.AddScoped<IAtualizarPerfilUseCase, AtualizarPerfilUseCase>();
         services.AddScoped<IAtualizarUsuarioUseCase, AtualizarUsuarioUseCase>();
+        services.AddScoped<IDesativarUsuarioUseCase, DesativarUsuarioUseCase>();
     }
 }
