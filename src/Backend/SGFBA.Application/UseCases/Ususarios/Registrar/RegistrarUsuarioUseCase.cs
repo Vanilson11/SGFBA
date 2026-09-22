@@ -16,6 +16,7 @@ namespace SGFBA.Application.UseCases.Ususarios.Registrar;
 public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 {
     private readonly IReadOnlyUsuarioRepository _readOnlyUsuarioRepository;
+    private readonly IUpdateOnlyUsuariosRepository _updateOnlyUsuariosRepository;
     private readonly IWriteOnlyUsuariosRepository _writeOnlyUsuariosRepository;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUnitOffWork _unitOffWork;
@@ -23,12 +24,14 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 
     public RegistrarUsuarioUseCase(
         IReadOnlyUsuarioRepository readOnlyUsuarioRepository,
+        IUpdateOnlyUsuariosRepository updateOnlyUsuariosRepository,
         IWriteOnlyUsuariosRepository writeOnlyUsuariosRepository,
         IPasswordHasher passwordHasher,
         IUnitOffWork unitOffWork,
         IAccessTokenGenerator accessTokenGenerator)
     {
         _readOnlyUsuarioRepository = readOnlyUsuarioRepository;
+        _updateOnlyUsuariosRepository = updateOnlyUsuariosRepository;
         _writeOnlyUsuariosRepository = writeOnlyUsuariosRepository;
         _passwordHasher = passwordHasher;
         _unitOffWork = unitOffWork;
@@ -60,9 +63,9 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
     private async Task Validar_Request(RequestRegistrarUsuarioJson request)
     {
         var resultado = new UsuarioValidator().Validate(request);
-        var usuarioComEmailExiste = await _readOnlyUsuarioRepository.BuscarPorEmail(request.Email);
+        var usuarioComEmailExiste = await _updateOnlyUsuariosRepository.BuscarPorEmail(request.Email);
 
-        if (usuarioComEmailExiste is not null)
+        if (usuarioComEmailExiste)
         {
             resultado.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.USUARIO_JA_REGISTRADO));
         }

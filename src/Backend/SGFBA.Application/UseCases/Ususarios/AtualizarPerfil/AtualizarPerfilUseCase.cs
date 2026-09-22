@@ -50,9 +50,9 @@ public class AtualizarPerfilUseCase : IAtualizarPerfilUseCase
 
         if(request.Email.Equals(usuario.Email) is false)
         {
-            var usuarioComEmailExiste = await _readOnlyUsuarioRepository.BuscarPorEmail(request.Email);
+            var usuarioComEmailExiste = await _updateOnlyUsuariosRepository.BuscarPorEmail(request.Email);
 
-            if(usuarioComEmailExiste is not null)
+            if(usuarioComEmailExiste)
             {
                 resultado.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.USUARIO_JA_REGISTRADO));
             }
