@@ -17,12 +17,14 @@ internal class SGFBADbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Usuario>().ToTable("usuarios");
+        modelBuilder.Entity<Usuario>().HasQueryFilter(u => u.Ativo);
 
         modelBuilder.Entity<Estudante>()
             .HasOne(e => e.Usuario)
             .WithMany()
             .HasForeignKey(e => e.UserId);
         modelBuilder.Entity<Estudante>().ToTable("estudantes");
+        modelBuilder.Entity<Estudante>().HasQueryFilter(e => e.Ativo);
 
         modelBuilder.Entity<Ficha>()
             .HasOne(f => f.Usuario)

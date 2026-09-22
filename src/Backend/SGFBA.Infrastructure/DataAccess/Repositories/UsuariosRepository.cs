@@ -37,12 +37,12 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
 
     public async Task<List<Usuario>> BuscarTodos()
     {
-        return await _dbContext.Usuarios.AsNoTracking().ToListAsync();
+        return await _dbContext.Usuarios.AsNoTracking().IgnoreQueryFilters().ToListAsync();
     }
 
     public async Task<List<Usuario>> BuscarTodosAtivos()
     {
-        return await _dbContext.Usuarios.AsNoTracking().Where(usuario => usuario.Ativo).ToListAsync();
+        return await _dbContext.Usuarios.AsNoTracking().ToListAsync();
     }
 
     public void Atualizar(Usuario usuario)
