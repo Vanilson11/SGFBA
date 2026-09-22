@@ -15,9 +15,14 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
 
     public async Task Adicionar(Usuario usuario) => await _dbContext.Usuarios.AddAsync(usuario);
 
-    public async Task<Usuario?> BuscarPorEmail(string email)
+    async Task<Usuario?> IReadOnlyUsuarioRepository.BuscarPorEmail(string email)
     {
         return await _dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(usuario => usuario.Ativo && usuario.Email.Equals(email));
+    }
+
+    async Task<bool> IUpdateOnlyUsuariosRepository.BuscarPorEmail(string email)
+    {
+        return await _dbContext.Usuarios.AsNoTracking().AnyAsync(usuario => usuario.Ativo && usuario.Email.Equals(email));
     }
 
     public async Task<Usuario?> BuscarPorId(long id)

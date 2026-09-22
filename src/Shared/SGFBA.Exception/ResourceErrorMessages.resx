@@ -171,6 +171,12 @@
   <data name="NOME_OBRIGATORIO" xml:space="preserve">
     <value>O nome é obrigatório</value>
   </data>
+  <data name="PERMISSAO_INVALIDA" xml:space="preserve">
+    <value>Nível de permissão inválido.</value>
+  </data>
+  <data name="PERMISSAO_OBRIGATORIA" xml:space="preserve">
+    <value>É obrigatório informar o nível de permissão do usuário.</value>
+  </data>
   <data name="SENHA_INVALIDA" xml:space="preserve">
     <value>A senha deve conter no mínimo 8 caracteres, sendo uma letra maiúscula, uma letra minúscula, um número e um caracter especial(ex: !,#,@,$,.)</value>
   </data>
