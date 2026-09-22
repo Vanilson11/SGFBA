@@ -5,6 +5,7 @@ using SGFBA.Application.UseCases.Estudantes.BuscarAtivoPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodosAtivos;
+using SGFBA.Application.UseCases.Estudantes.Desativar;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -102,6 +103,23 @@ public class EstudantesController : ControllerBase
         )
     {
         await useCase.Executar(request, idEstudante);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{idEstudante}")]
+    [Authorize(Roles = $"{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Desativar(
+        [FromServices] IDesativarEstudanteUseCase useCase,
+        [FromRoute] long idEstudante
+        )
+    {
+        await useCase.Executar(idEstudante);
 
         return NoContent();
     }
