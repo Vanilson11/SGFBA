@@ -3,6 +3,7 @@ using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Application.UseCases.Fichas.Registrar;
+using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -27,5 +28,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarUsuarioPorIdUseCase, BuscarUsuarioPorIdUseCase>();
         services.AddScoped<IBuscarTodosAtivosUseCase, BuscarTodosAtivosUseCase>();
         services.AddScoped<IBuscarTodosUseCase, BuscarTodosUseCase>();
+        services.AddScoped<IAtualizarPerfilUseCase, AtualizarPerfilUseCase>();
     }
 }

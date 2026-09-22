@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -7,6 +8,7 @@ using SGFBA.Application.UseCases.Ususarios.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 using SGFBA.Domain.Enums;
+using SGFBA.Exception;
 
 namespace SGFBA.Api.Controllers;
 
@@ -65,5 +67,19 @@ public class UsuariosController : ControllerBase
         var response = await useCase.Executar(id);
 
         return Ok(response);
+    }
+
+    [HttpPut("atualizar-perfil")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> AtualizarPerfil(
+        [FromServices] IAtualizarPerfilUseCase useCase,
+        [FromBody] RequestAtualizarPerfilJson request)
+    {
+        await useCase.Executar(request);
+
+        return NoContent();
     }
 }
