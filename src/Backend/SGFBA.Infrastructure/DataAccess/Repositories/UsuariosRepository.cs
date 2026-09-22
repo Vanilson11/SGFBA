@@ -49,4 +49,15 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
     {
         _dbContext.Usuarios.Update(usuario);
     }
+
+    public async Task<bool> Desativar(Usuario usuario)
+    {
+        var usuarioExiste = await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id.Equals(usuario.Id));
+
+        if (usuarioExiste is null) return false;
+
+        usuarioExiste.Ativo = false;
+
+        return true;
+    }
 }

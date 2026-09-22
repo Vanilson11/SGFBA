@@ -5,4 +5,5 @@ namespace SGFBA.Domain.Repositories.Usuarios;
 public interface IWriteOnlyUsuariosRepository
 {
     Task Adicionar(Usuario usuario);
+    Task<bool> Desativar(Usuario usuario);
 }

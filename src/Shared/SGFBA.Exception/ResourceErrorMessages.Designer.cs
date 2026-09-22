@@ -106,6 +106,24 @@ namespace SGFBA.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro ao desativar: usuário não encontrado..
+        /// </summary>
+        public static string DESATIVAR_USUARIO_ERRO {
+            get {
+                return ResourceManager.GetString("DESATIVAR_USUARIO_ERRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro ao desativar: estudante não encontrado..
+        /// </summary>
+        public static string DESATIVER_ESTUDANTE_ERRO {
+            get {
+                return ResourceManager.GetString("DESATIVER_ESTUDANTE_ERRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail informado é inválido.
         /// </summary>
         public static string EMAIL_INVALIDO {
