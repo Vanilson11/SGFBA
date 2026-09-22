@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
+using SGFBA.Application.UseCases.Estudantes.BuscarTodosAtivos;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -20,6 +21,18 @@ public class EstudantesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseEstudantesJson), StatusCodes.Status200OK)]
     public async Task<IActionResult> BuscarTodos([FromServices] IBuscarTodosEstudantesUseCase useCase)
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
+    [HttpGet("ativos")]
+    [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseEstudantesAtivosJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarTodosAtivos([FromServices] IBuscarTodosEstudantesAtivosUseCase useCase)
     {
         var response = await useCase.Executar();
 

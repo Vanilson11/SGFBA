@@ -2,12 +2,11 @@
 
 namespace SGFBA.Communication.Responses;
 
-public class ResponseShortEstudanteJson
+public class ResponseShortEstudanteAtivoJson
 {
     public long Id { get; set; }
     public string Nome { get; set; } = string.Empty;
     public Turma Turma { get; set; }
     public Turno Turno { get; set; }
     public DateTime DataNascimento { get; set; }
-    public bool Ativo { get; set; }
 }
