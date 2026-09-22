@@ -30,6 +30,11 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
         return await _dbContext.Usuarios.AsNoTracking().AnyAsync(usuario => usuario.Ativo && usuario.Matricula.Equals(matricula));
     }
 
+    public async Task<List<Usuario>> BuscarTodos()
+    {
+        return await _dbContext.Usuarios.AsNoTracking().ToListAsync();
+    }
+
     public async Task<List<Usuario>> BuscarTodosAtivos()
     {
         return await _dbContext.Usuarios.AsNoTracking().Where(usuario => usuario.Ativo).ToListAsync();

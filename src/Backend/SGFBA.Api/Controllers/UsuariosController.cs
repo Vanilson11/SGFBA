@@ -43,7 +43,7 @@ public class UsuariosController : ControllerBase
     [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(typeof(ResponseUsuariosJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseUsuariosAtivosJson), StatusCodes.Status200OK)]
     public async Task<IActionResult> BuscarTodosAtivos([FromServices] IBuscarTodosAtivosUseCase useCase)
     {
         var response = await useCase.Executar();

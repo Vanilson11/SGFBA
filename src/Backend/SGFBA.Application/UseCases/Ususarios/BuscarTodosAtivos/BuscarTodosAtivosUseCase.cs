@@ -12,13 +12,13 @@ public class BuscarTodosAtivosUseCase : IBuscarTodosAtivosUseCase
     {
         _readOnlyUsuarioRepository = readOnlyUsuarioRepository;
     }
-    public async Task<ResponseUsuariosJson> Executar()
+    public async Task<ResponseUsuariosAtivosJson> Executar()
     {
         var usuarios = await _readOnlyUsuarioRepository.BuscarTodosAtivos();
 
-        return new ResponseUsuariosJson
+        return new ResponseUsuariosAtivosJson
         {
-            Usuarios = usuarios.Adapt<List<ResponseShortUsuarioJson>>()
+            Usuarios = usuarios.Adapt<List<ResponseShortUsuarioAtivoJson>>()
         };
     }
 }
