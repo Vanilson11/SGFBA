@@ -11,5 +11,6 @@ public class FichaValidator : AbstractValidator<RequestFichaJson>
         RuleFor(request => request.DataAbertura).LessThanOrEqualTo(DateTime.UtcNow).WithMessage(ResourceErrorMessages.DATA_FICHA_DO_FUTURO);
         RuleFor(request => request.Motivo).IsInEnum().WithMessage(ResourceErrorMessages.MOTIVO_INVALIDO);
         RuleFor(request => request.Status).IsInEnum().WithMessage(ResourceErrorMessages.STATUS_INVALIDO);
+        RuleFor(request => request.Observacao).MaximumLength(500).WithMessage(ResourceErrorMessages.CAMPO_500_CARACTERES);
     }
 }
