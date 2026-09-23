@@ -2,7 +2,7 @@
 
 namespace SGFBA.Application.UseCases.Fichas.BuscarTodas;
 
-public interface IBuscarTodasFichasAtivasUseCase
+public interface IBuscarTodasFichasUseCase
 {
-    Task<ResponseFichasAtivasJson> Executar();
+    Task<ResponseFichasJson> Executar();
 }

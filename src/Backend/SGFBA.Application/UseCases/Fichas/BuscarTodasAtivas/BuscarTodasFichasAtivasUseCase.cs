@@ -3,7 +3,7 @@ using SGFBA.Communication.Responses;
 using SGFBA.Domain.Repositories.Fichas;
 using SGFBA.Domain.Services.LoggedUser;
 
-namespace SGFBA.Application.UseCases.Fichas.BuscarTodas;
+namespace SGFBA.Application.UseCases.Fichas.BuscarTodasAtivas;
 
 public class BuscarTodasFichasAtivasUseCase : IBuscarTodasFichasAtivasUseCase
 {
@@ -18,15 +18,15 @@ public class BuscarTodasFichasAtivasUseCase : IBuscarTodasFichasAtivasUseCase
         _readOnlyFichasRepository = readOnlyFichasRepository;
         _loggedUser = loggedUser;
     }
-    public async Task<ResponseFichasAtivasJson> Executar()
+    public async Task<ResponseFichasJson> Executar()
     {
         var usuarioLogado = await _loggedUser.Get();
 
         var fichas = await _readOnlyFichasRepository.BuscarTodasAtivas(usuarioLogado.Id);
 
-        return new ResponseFichasAtivasJson
+        return new ResponseFichasJson
         {
-            Fichas = fichas.Adapt<List<ResponseShortFichaAtivaJson>>()
+            Fichas = fichas.Adapt<List<ResponseShortFichaJson>>()
         };
     }
 }

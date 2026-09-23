@@ -2,7 +2,7 @@
 
 namespace SGFBA.Communication.Responses;
 
-public class ResponseShortFichaAtivaJson
+public class ResponseShortFichaJson
 {
     public DateTime DataAbertura { get; set; }
     public Motivo Motivo { get; set; }
