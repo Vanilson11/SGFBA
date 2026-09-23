@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
@@ -6,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace SGFBA.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class CreateDatabaseMigrationV1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,7 +75,7 @@ namespace SGFBA.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Observacao = table.Column<string>(type: "longtext", nullable: true),
                     FichaIdentifier = table.Column<Guid>(type: "char(36)", nullable: false),
-                    IdOrientador = table.Column<long>(type: "bigint", nullable: false),
+                    IdUsuario = table.Column<long>(type: "bigint", nullable: false),
                     IdEstudante = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -87,8 +88,8 @@ namespace SGFBA.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_fichas_usuarios_IdOrientador",
-                        column: x => x.IdOrientador,
+                        name: "FK_fichas_usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
                         principalTable: "usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
@@ -135,9 +136,9 @@ namespace SGFBA.Infrastructure.Migrations
                 column: "IdEstudante");
 
             migrationBuilder.CreateIndex(
-                name: "IX_fichas_IdOrientador",
+                name: "IX_fichas_IdUsuario",
                 table: "fichas",
-                column: "IdOrientador");
+                column: "IdUsuario");
         }
 
         /// <inheritdoc />

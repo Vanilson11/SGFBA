@@ -11,8 +11,8 @@ using SGFBA.Infrastructure.DataAccess;
 namespace SGFBA.Infrastructure.Migrations
 {
     [DbContext(typeof(SGFBADbContext))]
-    [Migration("20260919131851_UpdateUserEntityMigration")]
-    partial class UpdateUserEntityMigration
+    [Migration("20260923181218_CreateDatabaseMigrationV1")]
+    partial class CreateDatabaseMigrationV1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,6 @@ namespace SGFBA.Infrastructure.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<long>("FichaId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("IdFicha")
                         .HasColumnType("bigint");
 
@@ -48,7 +45,7 @@ namespace SGFBA.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FichaId");
+                    b.HasIndex("IdFicha");
 
                     b.ToTable("acoes", (string)null);
                 });
@@ -89,12 +86,9 @@ namespace SGFBA.Infrastructure.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UsuarioId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("estudantes", (string)null);
                 });
@@ -108,16 +102,13 @@ namespace SGFBA.Infrastructure.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<long>("EstudanteId")
-                        .HasColumnType("bigint");
-
                     b.Property<Guid>("FichaIdentifier")
                         .HasColumnType("char(36)");
 
                     b.Property<long>("IdEstudante")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("IdOrientador")
+                    b.Property<long>("IdUsuario")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Motivo")
@@ -129,14 +120,11 @@ namespace SGFBA.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<long>("UsuarioId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("EstudanteId");
+                    b.HasIndex("IdEstudante");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("IdUsuario");
 
                     b.ToTable("fichas", (string)null);
                 });
@@ -185,7 +173,7 @@ namespace SGFBA.Infrastructure.Migrations
                 {
                     b.HasOne("SGFBA.Domain.Entities.Ficha", "Ficha")
                         .WithMany()
-                        .HasForeignKey("FichaId")
+                        .HasForeignKey("IdFicha")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -196,7 +184,7 @@ namespace SGFBA.Infrastructure.Migrations
                 {
                     b.HasOne("SGFBA.Domain.Entities.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -207,13 +195,13 @@ namespace SGFBA.Infrastructure.Migrations
                 {
                     b.HasOne("SGFBA.Domain.Entities.Estudante", "Estudante")
                         .WithMany()
-                        .HasForeignKey("EstudanteId")
+                        .HasForeignKey("IdEstudante")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SGFBA.Domain.Entities.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

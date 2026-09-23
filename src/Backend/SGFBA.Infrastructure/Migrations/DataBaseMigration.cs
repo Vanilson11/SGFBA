@@ -6,7 +6,7 @@ namespace SGFBA.Infrastructure.Migrations;
 
 public static class DataBaseMigration
 {
-    public async static Task MigrateDataBase(IServiceProvider serviceProvider)
+    public static async Task MigrateDataBase(IServiceProvider serviceProvider)
     {
         var dbContext = serviceProvider.GetRequiredService<SGFBADbContext>();
 
