@@ -10,6 +10,7 @@ using SGFBA.Application.UseCases.Estudantes.Desativar;
 using SGFBA.Application.UseCases.Estudantes.Registrar;
 using SGFBA.Application.UseCases.Fichas.Atualizar;
 using SGFBA.Application.UseCases.Fichas.BuscarAtivaPorId;
+using SGFBA.Application.UseCases.Fichas.BuscarPorId;
 using SGFBA.Application.UseCases.Fichas.BuscarTodas;
 using SGFBA.Application.UseCases.Fichas.BuscarTodasAtivas;
 using SGFBA.Application.UseCases.Fichas.Cancelar;
@@ -57,5 +58,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarTodasFichasAtivasUseCase, BuscarTodasFichasAtivasUseCase>();
         services.AddScoped<IBuscarTodasFichasUseCase, BuscarTodasFichasUseCase>();
         services.AddScoped<IBuscarFichaAtivaPorIdUseCase, BuscarFichaAtivaPorIdUseCase>();
+        services.AddScoped<IBuscarPorIdUseCase, BuscarPorIdUseCase>();
     }
 }
