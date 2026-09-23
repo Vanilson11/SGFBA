@@ -30,7 +30,7 @@ public class RegistrarFichaUseCase : IRegistrarFichaUseCase
         _loggedUser = loggedUser;
         _unitOffWork = unitOffWork;
     }
-    public async Task<ResponseRegistrarFichaJson> Executar(RequestRegistrarFichaJson request, long id)
+    public async Task<ResponseRegistrarFichaJson> Executar(RequestFichaJson request, long id)
     {
         Validar_Request(request);
 
@@ -57,7 +57,7 @@ public class RegistrarFichaUseCase : IRegistrarFichaUseCase
         };
     }
 
-    private void Validar_Request(RequestRegistrarFichaJson request)
+    private void Validar_Request(RequestFichaJson request)
     {
         var resultado = new FichaValidator().Validate(request);
 

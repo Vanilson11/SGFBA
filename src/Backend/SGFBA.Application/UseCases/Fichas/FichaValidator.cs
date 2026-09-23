@@ -4,7 +4,7 @@ using SGFBA.Exception;
 
 namespace SGFBA.Application.UseCases.Fichas;
 
-public class FichaValidator : AbstractValidator<RequestRegistrarFichaJson>
+public class FichaValidator : AbstractValidator<RequestFichaJson>
 {
     public FichaValidator()
     {

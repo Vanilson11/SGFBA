@@ -2,7 +2,7 @@
 
 namespace SGFBA.Communication.Requests;
 
-public class RequestRegistrarFichaJson
+public class RequestFichaJson
 {
     public DateTime DataAbertura { get; set; }
     public Motivo Motivo { get; set; }
