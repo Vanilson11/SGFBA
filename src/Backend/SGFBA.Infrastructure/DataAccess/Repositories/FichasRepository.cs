@@ -4,7 +4,7 @@ using SGFBA.Domain.Repositories.Fichas;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
 
-internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRepository
+internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRepository, IUpdateOnlyFichasRepository
 {
     private readonly SGFBADbContext _dbContext;
 
@@ -14,9 +14,20 @@ internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRep
     }
     public async Task Adicionar(Ficha ficha) => await _dbContext.Fichas.AddAsync(ficha);
 
-    public async Task<Ficha?> BuscaPorId(long idUsuario, long idFicha)
+    public void Atualizar(Ficha ficha)
+    {
+        _dbContext.Fichas.Update(ficha);
+    }
+
+    async Task<Ficha?> IReadOnlyFichasRepository.BuscarPorId(long idUsuario, long idFicha)
     {
         return await _dbContext.Fichas.AsNoTracking()
+            .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
+    }
+
+    async Task<Ficha?> IUpdateOnlyFichasRepository.BuscarPorId(long idUsuario, long idFicha)
+    {
+        return await _dbContext.Fichas
             .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
     }
 }

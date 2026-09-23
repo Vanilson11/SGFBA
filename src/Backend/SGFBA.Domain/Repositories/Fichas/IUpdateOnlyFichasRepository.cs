@@ -2,7 +2,8 @@
 
 namespace SGFBA.Domain.Repositories.Fichas;
 
-public interface IReadOnlyFichasRepository
+public interface IUpdateOnlyFichasRepository
 {
     Task<Ficha?> BuscarPorId(long idUsuario, long idFicha);
+    void Atualizar(Ficha ficha);
 }

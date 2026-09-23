@@ -38,7 +38,7 @@ public class RegistrarAcaoUseCase : IRegistrarAcaoUseCase
 
         var usuario = await _loggedUser.Get();
 
-        var ficha = await _readOnlyFichasRepository.BuscaPorId(usuario.Id, idFicha);
+        var ficha = await _readOnlyFichasRepository.BuscarPorId(usuario.Id, idFicha);
 
         if (ficha is null) throw new NotFoundException(ResourceErrorMessages.FICHA_NAO_ENCONTRADA);
 

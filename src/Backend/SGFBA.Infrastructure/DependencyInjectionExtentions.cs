@@ -48,6 +48,7 @@ public static class DependencyInjectionExtentions
 
         services.AddScoped<IWriteOnlyFichasRepository, FichasRepository>();
         services.AddScoped<IReadOnlyFichasRepository, FichasRepository>();
+        services.AddScoped<IUpdateOnlyFichasRepository, FichasRepository>();
 
         services.AddScoped<IWriteOnlyEstudantesRepository, EstudantesRepository>();
         services.AddScoped<IReadOnlyEstudantesRepository, EstudantesRepository>();
