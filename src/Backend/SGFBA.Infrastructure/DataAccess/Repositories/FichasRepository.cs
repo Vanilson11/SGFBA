@@ -19,6 +19,11 @@ internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRep
         _dbContext.Fichas.Update(ficha);
     }
 
+    public async Task<List<Ficha>> BuscarTodasAtivas(long idUsuario)
+    {
+        return await _dbContext.Fichas.AsNoTracking().Where(ficha => ficha.IdUsuario.Equals(idUsuario)).ToListAsync();
+    }
+
     async Task<Ficha?> IReadOnlyFichasRepository.BuscarPorId(long idUsuario, long idFicha)
     {
         return await _dbContext.Fichas.AsNoTracking()
