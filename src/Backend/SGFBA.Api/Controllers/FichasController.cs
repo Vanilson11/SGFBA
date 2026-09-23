@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Fichas.Atualizar;
+using SGFBA.Application.UseCases.Fichas.BuscarAtivaPorId;
 using SGFBA.Application.UseCases.Fichas.BuscarTodas;
 using SGFBA.Application.UseCases.Fichas.BuscarTodasAtivas;
 using SGFBA.Application.UseCases.Fichas.Cancelar;
@@ -8,6 +9,7 @@ using SGFBA.Application.UseCases.Fichas.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
 using SGFBA.Domain.Enums;
+using SGFBA.Exception;
 
 namespace SGFBA.Api.Controllers;
 
@@ -39,6 +41,24 @@ public class FichasController : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpGet]
+    [Route("ativa/{idFicha}")]
+    [Authorize(Roles = $"{Roles.COORDENADOR},{Roles.ORIENTADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseFichaJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarAtivaPorId(
+        [FromServices] IBuscarFichaAtivaPorIdUseCase useCase,
+        [FromRoute] long idFicha
+        )
+    {
+        var response = await useCase.Executar(idFicha);
+
+        return Ok(response);
+    }
+
 
     [HttpPost]
     [Route("{idEstudante}")]
