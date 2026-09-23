@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Fichas.Atualizar;
+using SGFBA.Application.UseCases.Fichas.BuscarTodas;
 using SGFBA.Application.UseCases.Fichas.Cancelar;
 using SGFBA.Application.UseCases.Fichas.Registrar;
 using SGFBA.Communication.Requests;
@@ -14,6 +15,18 @@ namespace SGFBA.Api.Controllers;
 [Authorize]
 public class FichasController : ControllerBase
 {
+    [HttpGet("ativas")]
+    [Authorize(Roles = $"{Roles.COORDENADOR},{Roles.ORIENTADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseFichasAtivasJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarTodasAtivas([FromServices] IBuscarTodasFichasAtivasUseCase useCase)
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
     [HttpPost]
     [Route("{idEstudante}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
