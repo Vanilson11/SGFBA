@@ -6,5 +6,4 @@ public enum StatusFicha
     Retornou = 1,
     Encaminhado = 2,
     Infrequente = 3,
-    Cancelada = 4
 }
