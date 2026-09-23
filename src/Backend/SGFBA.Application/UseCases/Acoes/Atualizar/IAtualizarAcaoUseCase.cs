@@ -4,5 +4,5 @@ namespace SGFBA.Application.UseCases.Acoes.Atualizar;
 
 public interface IAtualizarAcaoUseCase
 {
-    Task Executar(RequestAcaoJson request, long idAcao);
+    Task Executar(RequestAcaoJson request, long idFicha, long idAcao);
 }

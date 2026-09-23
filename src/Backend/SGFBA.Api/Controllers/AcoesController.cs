@@ -33,7 +33,7 @@ public class AcoesController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{idAcao}")]
+    [Route("{idAcao}/fichas/{idFicha}")]
     [Authorize(Roles = $"{Roles.COORDENADOR},{Roles.ORIENTADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -42,10 +42,11 @@ public class AcoesController : ControllerBase
     public async Task<IActionResult> Atualizar(
         [FromServices] IAtualizarAcaoUseCase useCase,
         [FromBody] RequestAcaoJson request,
-        [FromRoute] long idAcao
+        [FromRoute] long idAcao,
+        [FromRoute] long idFicha
         )
     {
-        await useCase.Executar(request, idAcao);
+        await useCase.Executar(request, idAcao, idFicha);
 
         return NoContent();
     }
