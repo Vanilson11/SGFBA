@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Acoes.Atualizar;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -22,12 +23,30 @@ public class AcoesController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Registrar(
         [FromServices] IRegistrarAcaoUseCase useCase,
-        [FromBody] RequestRegistrarAcaoJson request,
+        [FromBody] RequestAcaoJson request,
         [FromRoute] long idFicha
         )
     {
         var response = await useCase.Executar(request, idFicha);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpPut]
+    [Route("{idAcao}")]
+    [Authorize(Roles = $"{Roles.COORDENADOR},{Roles.ORIENTADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Atualizar(
+        [FromServices] IAtualizarAcaoUseCase useCase,
+        [FromBody] RequestAcaoJson request,
+        [FromRoute] long idAcao
+        )
+    {
+        await useCase.Executar(request, idAcao);
+
+        return NoContent();
     }
 }

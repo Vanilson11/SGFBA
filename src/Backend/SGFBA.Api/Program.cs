@@ -9,7 +9,6 @@ using SGFBA.Domain.Security.Tokens;
 using SGFBA.Infrastructure;
 using SGFBA.Infrastructure.Migrations;
 
-//using SGFBA.Infrastructure.Migrations;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

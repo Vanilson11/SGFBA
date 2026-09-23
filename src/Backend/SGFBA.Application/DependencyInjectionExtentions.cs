@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SGFBA.Application.UseCases.Acoes.Atualizar;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
 using SGFBA.Application.UseCases.Estudantes.Atualizar;
@@ -59,5 +60,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarTodasFichasUseCase, BuscarTodasFichasUseCase>();
         services.AddScoped<IBuscarFichaAtivaPorIdUseCase, BuscarFichaAtivaPorIdUseCase>();
         services.AddScoped<IBuscarPorIdUseCase, BuscarPorIdUseCase>();
+        services.AddScoped<IAtualizarAcaoUseCase, AtualizarAcaoUseCase>();
     }
 }

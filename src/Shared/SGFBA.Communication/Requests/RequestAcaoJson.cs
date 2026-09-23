@@ -2,7 +2,7 @@
 
 namespace SGFBA.Communication.Requests;
 
-public class RequestRegistrarAcaoJson
+public class RequestAcaoJson
 {
     public TipoAcao Tipo { get; set; }
     public DateTime Data { get; set; }

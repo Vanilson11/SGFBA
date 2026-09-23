@@ -30,7 +30,7 @@ public class RegistrarAcaoUseCase : IRegistrarAcaoUseCase
         _loggedUser = loggedUser;
         _unitOffWork = unitOffWork;
     }
-    public async Task<ResponseRegistrarAcaoJson> Executar(RequestRegistrarAcaoJson request, long idFicha)
+    public async Task<ResponseRegistrarAcaoJson> Executar(RequestAcaoJson request, long idFicha)
     {
         Validar_Request(request);
 
@@ -56,7 +56,7 @@ public class RegistrarAcaoUseCase : IRegistrarAcaoUseCase
         };
     }
 
-    private void Validar_Request(RequestRegistrarAcaoJson request)
+    private void Validar_Request(RequestAcaoJson request)
     {
         var resultado = new AcaoValidator().Validate(request);
 

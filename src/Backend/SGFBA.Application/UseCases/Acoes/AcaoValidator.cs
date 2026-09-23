@@ -4,7 +4,7 @@ using SGFBA.Exception;
 
 namespace SGFBA.Application.UseCases.Acoes;
 
-public class AcaoValidator : AbstractValidator<RequestRegistrarAcaoJson>
+public class AcaoValidator : AbstractValidator<RequestAcaoJson>
 {
     public AcaoValidator()
     {
