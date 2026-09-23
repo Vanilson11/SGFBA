@@ -43,4 +43,15 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
     {
         _dbContext.Estudantes.Update(estudante);
     }
+
+    public async Task<bool> Desativar(long idEstudante)
+    {
+        var estudante = await _dbContext.Estudantes.FirstOrDefaultAsync(e => e.Id.Equals(idEstudante));
+
+        if (estudante is null) return false;
+
+        estudante.Ativo = false;
+
+        return true;
+    }
 }
