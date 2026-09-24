@@ -33,6 +33,18 @@ public class EstudantesController : ControllerBase
         return Ok(response);
     }
 
+    [HttpGet("ativos")]
+    [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseEstudantesAtivosJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarTodosAtivos([FromServices] IBuscarTodosEstudantesAtivosUseCase useCase)
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
     [HttpGet("fichas")]
     [Authorize(Roles = $"{Roles.ADMIN},{Roles.GESTOR_ESCOLAR},{Roles.SECRETARIO}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -57,24 +69,12 @@ public class EstudantesController : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("ativos")]
-    [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR}")]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(typeof(ResponseEstudantesAtivosJson), StatusCodes.Status200OK)]
-    public async Task<IActionResult> BuscarTodosAtivos([FromServices] IBuscarTodosEstudantesAtivosUseCase useCase)
-    {
-        var response = await useCase.Executar();
-
-        return Ok(response);
-    }
-
     [HttpGet]
     [Route("ativo/{idEstudante}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR},{Roles.COORDENADOR},{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR},{Roles.ADMIN}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(typeof(ResponseEstudanteAtivoJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseEstudanteJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> BuscarAtivoPorId(
         [FromServices] IBuscarEstudanteAtivoPorIdUseCase useCase,

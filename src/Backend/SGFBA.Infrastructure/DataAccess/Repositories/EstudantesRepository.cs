@@ -16,7 +16,10 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
 
     async Task<Estudante?> IReadOnlyEstudantesRepository.BuscarPorId(long id)
     {
-        return await _dbContext.Estudantes.AsNoTracking().IgnoreQueryFilters().FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
+        return await _dbContext.Estudantes.AsNoTracking()
+            .IgnoreQueryFilters()
+            .Include(estudante => estudante.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
     }
 
     async Task<Estudante?> IUpdateOnlyEstudantesRepository.BuscarPorId(long id)
@@ -26,7 +29,9 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
 
     public async Task<Estudante?> BuscarAtivoPorId(long id)
     {
-        return await _dbContext.Estudantes.AsNoTracking().FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
+        return await _dbContext.Estudantes.AsNoTracking()
+            .Include(estudante => estudante.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .FirstOrDefaultAsync(estudante => estudante.Id.Equals(id));
     }
 
     public async Task<List<Estudante>> BuscarTodos()
