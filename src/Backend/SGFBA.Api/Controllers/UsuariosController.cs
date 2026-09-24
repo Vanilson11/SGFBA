@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Ususarios.AlterarSenha;
 using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
+using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadores;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadoresAtivos;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
@@ -58,12 +59,26 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpGet("coordenadores/orientadores/ativos")]
-    [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}")]
+    [Authorize(Roles = $"{Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseCoordenadoresOrientadoresAtivosJson), StatusCodes.Status200OK)]
     public async Task<IActionResult> BuscarCoordenadoresOrientadoresAtivos(
         [FromServices] IBuscarCoordenadoresOrientadoresAtivosUseCase useCase
+        )
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
+    [HttpGet("coordenadores/orientadores")]
+    [Authorize(Roles = Roles.ADMIN)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseCoordenadoresOrientadoresJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarCoordenaoresOrientadores(
+        [FromServices] IBuscarCoordenadoresOrientadoresUseCase useCase
         )
     {
         var response = await useCase.Executar();
