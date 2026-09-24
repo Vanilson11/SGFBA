@@ -56,6 +56,7 @@ public static class DependencyInjectionExtentions
 
         services.AddScoped<IWriteOnlyAcoesRepository, AcoesRepository>();
         services.AddScoped<IUpdateOnlyAcoesRepository, AcoesRepository>();
+        services.AddScoped<IReadOnlyAcoesRepository, AcoesRepository>();
     }
 
     private static void AddToken(IServiceCollection services, IConfiguration configuration)

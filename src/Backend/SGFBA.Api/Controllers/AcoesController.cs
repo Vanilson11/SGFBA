@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Acoes.Atualizar;
+using SGFBA.Application.UseCases.Acoes.BuscarTodas;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Communication.Requests;
 using SGFBA.Communication.Responses;
@@ -13,6 +14,23 @@ namespace SGFBA.Api.Controllers;
 [Authorize]
 public class AcoesController : ControllerBase
 {
+    [HttpGet]
+    [Route("{idFicha}")]
+    [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseAcoesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarTodas(
+        [FromServices] IBuscarTodasAcoesUseCase useCase,
+        [FromRoute] long idFicha
+        )
+    {
+        var response = await useCase.Executar(idFicha);
+
+        return Ok(response);
+    }
+
     [HttpPost]
     [Route("{idFicha}")]
     [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]

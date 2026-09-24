@@ -4,7 +4,7 @@ using SGFBA.Domain.Repositories.Acoes;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
 
-internal class AcoesRepository : IWriteOnlyAcoesRepository, IUpdateOnlyAcoesRepository
+internal class AcoesRepository : IWriteOnlyAcoesRepository, IUpdateOnlyAcoesRepository, IReadOnlyAcoesRepository
 {
     private readonly SGFBADbContext _dbContext;
 
@@ -22,5 +22,10 @@ internal class AcoesRepository : IWriteOnlyAcoesRepository, IUpdateOnlyAcoesRepo
     public void Atualizar(Acao acao)
     {
         _dbContext.Acoes.Update(acao);
+    }
+
+    public async Task<List<Acao>> BuscarTodas(long idFicha)
+    {
+        return await _dbContext.Acoes.AsNoTracking().Where(acao => acao.IdFicha.Equals(idFicha)).ToListAsync();
     }
 }
