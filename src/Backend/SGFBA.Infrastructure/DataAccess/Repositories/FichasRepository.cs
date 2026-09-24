@@ -32,6 +32,7 @@ internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRep
     async Task<Ficha?> IReadOnlyFichasRepository.BuscarPorId(long idUsuario, long idFicha)
     {
         return await _dbContext.Fichas.AsNoTracking()
+            .Include(ficha => ficha.Acoes)
             .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
     }
 

@@ -1,4 +1,7 @@
-﻿using SGFBA.Communication.Responses;
+﻿using Mapster;
+using SGFBA.Communication.Entities;
+using SGFBA.Communication.Responses;
+using SGFBA.Domain.Entities;
 using SGFBA.Domain.Repositories.Fichas;
 using SGFBA.Domain.Services.LoggedUser;
 using SGFBA.Exception;
@@ -33,7 +36,8 @@ public class BuscarFichaAtivaPorIdUseCase : IBuscarFichaAtivaPorIdUseCase
             DataAbertura = ficha.DataAbertura,
             Motivo = (Communication.Enums.Motivo)ficha.Motivo,
             Status = (Communication.Enums.StatusFicha)ficha.Status,
-            Observacao = ficha.Observacao
+            Observacao = ficha.Observacao,
+            Acoes = ficha.Acoes.Adapt<IList<Communication.Entities.Acao>>()
         };
     }
 }

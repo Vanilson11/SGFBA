@@ -40,7 +40,7 @@ internal class SGFBADbContext : DbContext
 
         modelBuilder.Entity<Acao>()
             .HasOne(a => a.Ficha)
-            .WithMany()
+            .WithMany(f => f.Acoes)
             .HasForeignKey(e => e.IdFicha);
         modelBuilder.Entity<Acao>().ToTable("acoes");
     }

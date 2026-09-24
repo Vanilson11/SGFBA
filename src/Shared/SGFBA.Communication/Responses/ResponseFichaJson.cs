@@ -1,4 +1,5 @@
-﻿using SGFBA.Communication.Enums;
+﻿using SGFBA.Communication.Entities;
+using SGFBA.Communication.Enums;
 
 namespace SGFBA.Communication.Responses;
 
@@ -9,4 +10,5 @@ public class ResponseFichaJson
     public Motivo Motivo { get; set; }
     public StatusFicha Status { get; set; }
     public string? Observacao { get; set; }
+    public IList<Acao> Acoes { get; set; } = [];
 }

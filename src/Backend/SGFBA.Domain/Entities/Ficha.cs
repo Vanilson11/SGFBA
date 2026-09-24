@@ -14,4 +14,5 @@ public class Ficha
     public Usuario Usuario { get; set; } = default!;
     public long IdEstudante { get; set; }
     public Estudante Estudante { get; set; } = default!;
+    public ICollection<Acao> Acoes { get; set; } = [];
 }
