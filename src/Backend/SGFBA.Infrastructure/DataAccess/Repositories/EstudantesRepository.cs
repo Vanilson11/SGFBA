@@ -54,4 +54,12 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
 
         return true;
     }
+
+    public async Task<List<Estudante>> BuscarEstudantesFichas()
+    {
+        return await _dbContext.Estudantes.AsNoTracking()
+            .IgnoreQueryFilters()
+            .Include(estudante => estudante.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .ToListAsync();
+    }
 }

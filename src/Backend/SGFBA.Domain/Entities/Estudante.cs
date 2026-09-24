@@ -15,4 +15,5 @@ public class Estudante
     public Guid StudentIdentifier { get; set; } = Guid.CreateVersion7();
     public long UserId { get; set; }
     public Usuario Usuario { get; set; } = default!;
+    public ICollection<Ficha> Fichas { get; set; } = [];
 }

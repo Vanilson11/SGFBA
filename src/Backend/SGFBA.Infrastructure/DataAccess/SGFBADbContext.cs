@@ -32,7 +32,7 @@ internal class SGFBADbContext : DbContext
             .HasForeignKey(f => f.IdUsuario);
         modelBuilder.Entity<Ficha>()
             .HasOne(f => f.Estudante)
-            .WithMany()
+            .WithMany(e => e.Fichas)
             .HasForeignKey(e => e.IdEstudante);
         modelBuilder.Entity<Ficha>().ToTable("fichas");
         modelBuilder.Entity<Ficha>().HasQueryFilter(f => f.Status != Domain.Enums.StatusFicha.Cancelada);
