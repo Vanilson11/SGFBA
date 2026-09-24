@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SGFBA.Application.UseCases.Acoes.Apagar;
 using SGFBA.Application.UseCases.Acoes.Atualizar;
 using SGFBA.Application.UseCases.Acoes.BuscarPorId;
 using SGFBA.Application.UseCases.Acoes.BuscarTodas;
@@ -80,6 +81,23 @@ public class AcoesController : ControllerBase
         )
     {
         await useCase.Executar(request, idAcao, idFicha);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{idAcao}/fichas/{idFicha}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Apagar(
+        [FromServices] IApagarAcaoUseCase useCase,
+        [FromRoute] long idAcao,
+        [FromRoute] long idFicha
+        )
+    {
+        await useCase.Executar(idAcao, idFicha);
 
         return NoContent();
     }

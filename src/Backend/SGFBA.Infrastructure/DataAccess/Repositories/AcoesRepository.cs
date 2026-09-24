@@ -33,4 +33,9 @@ internal class AcoesRepository : IWriteOnlyAcoesRepository, IUpdateOnlyAcoesRepo
     {
         return await _dbContext.Acoes.AsNoTracking().Where(acao => acao.IdFicha.Equals(idFicha)).ToListAsync();
     }
+
+    public void Apagar(Acao acao)
+    {
+        _dbContext.Remove(acao);
+    }
 }

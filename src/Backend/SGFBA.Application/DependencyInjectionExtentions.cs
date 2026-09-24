@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SGFBA.Application.UseCases.Acoes.Apagar;
 using SGFBA.Application.UseCases.Acoes.Atualizar;
 using SGFBA.Application.UseCases.Acoes.BuscarPorId;
 using SGFBA.Application.UseCases.Acoes.BuscarTodas;
@@ -77,5 +78,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarCoordenadorOrientadorPorIdUseCase, BuscarCoordenadorOrientadorPorIdUseCase>();
         services.AddScoped<IBuscarEstudantesFichasUseCase, BuscarEstudantesFichasUseCase>();
         services.AddScoped<IBuscarEstudantesFichasAtivosUseCase, BuscarEstudantesFichasAtivosUseCase>();
+        services.AddScoped<IApagarAcaoUseCase, ApagarAcaoUseCase>();
     }
 }
