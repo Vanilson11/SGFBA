@@ -12,12 +12,11 @@ namespace SGFBA.Api.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-[Authorize]
+[Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
 public class AcoesController : ControllerBase
 {
     [HttpGet]
     [Route("{idFicha}")]
-    [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseAcoesJson), StatusCodes.Status200OK)]
@@ -34,7 +33,6 @@ public class AcoesController : ControllerBase
 
     [HttpGet]
     [Route("{idAcao}/fichas{idFicha}")]
-    [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseAcaoJson), StatusCodes.Status200OK)]
@@ -52,7 +50,6 @@ public class AcoesController : ControllerBase
 
     [HttpPost]
     [Route("{idFicha}")]
-    [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseRegistrarAcaoJson), StatusCodes.Status201Created)]
@@ -71,7 +68,6 @@ public class AcoesController : ControllerBase
 
     [HttpPut]
     [Route("{idAcao}/fichas/{idFicha}")]
-    [Authorize(Roles = $"{Roles.COORDENADOR},{Roles.ORIENTADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
