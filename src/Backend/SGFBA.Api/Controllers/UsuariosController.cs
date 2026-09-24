@@ -5,6 +5,7 @@ using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadores;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadoresAtivos;
+using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadorOrientadorAtivoPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -47,7 +48,7 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpGet("ativos")]
-    [Authorize(Roles = $"{Roles.ADMIN}, {Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
+    [Authorize(Roles = $"{Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}, {Roles.COORDENADOR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseUsuariosAtivosJson), StatusCodes.Status200OK)]
@@ -82,6 +83,22 @@ public class UsuariosController : ControllerBase
         )
     {
         var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
+    [HttpGet("coordenadores/orientadores/ativos/{id}")]
+    [Authorize(Roles = $"{Roles.GESTOR_ESCOLAR}, {Roles.SECRETARIO}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseCoordenadorOrientadorJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarCoordenadorOrientadorAtivoPorId(
+        [FromServices] IBuscarCoordenadorOrientadorAtivoPorIdUseCase useCase,
+        [FromRoute] long id
+        )
+    {
+        var response = await useCase.Executar(id);
 
         return Ok(response);
     }

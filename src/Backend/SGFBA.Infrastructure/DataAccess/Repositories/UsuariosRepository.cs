@@ -83,4 +83,12 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
             .Include(usuario => usuario.Fichas).ThenInclude(ficha => ficha.Acoes)
             .ToListAsync();
     }
+
+    public async Task<Usuario?> BuscarCoordenadorOrientadorAtivoPorId(long id)
+    {
+        return await _dbContext.Usuarios.AsNoTracking()
+            .Where(usuario => usuario.Cargo.Equals(CargoUsuario.CoordenadorPedagogico) || usuario.Cargo.Equals(CargoUsuario.OrientadorEducacional))
+            .Include(usuario => usuario.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .FirstOrDefaultAsync(usuario => usuario.Id.Equals(id));
+    }
 }
