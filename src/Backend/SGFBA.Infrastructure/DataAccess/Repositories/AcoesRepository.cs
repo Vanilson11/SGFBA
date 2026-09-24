@@ -14,9 +14,14 @@ internal class AcoesRepository : IWriteOnlyAcoesRepository, IUpdateOnlyAcoesRepo
     }
     public async Task Adicionar(Acao acao) => await _dbContext.Acoes.AddAsync(acao);
 
-    public async Task<Acao?> BuscarPorId(long idAcao, long idFicha)
+    async Task<Acao?> IUpdateOnlyAcoesRepository.BuscarPorId(long idAcao, long idFicha)
     {
         return await _dbContext.Acoes.FirstOrDefaultAsync(acao => acao.Id.Equals(idAcao) && acao.IdFicha.Equals(idFicha));
+    }
+
+    async Task<Acao?> IReadOnlyAcoesRepository.BuscarPorId(long idAcao, long idFicha)
+    {
+        return await _dbContext.Acoes.AsNoTracking().FirstOrDefaultAsync(acao => acao.Id.Equals(idAcao) && acao.IdFicha.Equals(idFicha));
     }
 
     public void Atualizar(Acao acao)

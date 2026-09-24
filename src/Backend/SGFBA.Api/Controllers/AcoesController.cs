@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Acoes.Atualizar;
+using SGFBA.Application.UseCases.Acoes.BuscarPorId;
 using SGFBA.Application.UseCases.Acoes.BuscarTodas;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Communication.Requests;
@@ -27,6 +28,24 @@ public class AcoesController : ControllerBase
         )
     {
         var response = await useCase.Executar(idFicha);
+
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("{idAcao}/fichas{idFicha}")]
+    [Authorize(Roles = $"{Roles.ORIENTADOR}, {Roles.COORDENADOR}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseAcaoJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarAcaoFichaPorId(
+        [FromServices] IBuscarAcaoFichaPorIdUseCase useCase,
+        [FromRoute] long idAcao,
+        [FromRoute] long idFicha
+        )
+    {
+        var response = await useCase.Executar(idAcao, idFicha);
 
         return Ok(response);
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SGFBA.Application.UseCases.Acoes.Atualizar;
+using SGFBA.Application.UseCases.Acoes.BuscarPorId;
 using SGFBA.Application.UseCases.Acoes.BuscarTodas;
 using SGFBA.Application.UseCases.Acoes.Registrar;
 using SGFBA.Application.UseCases.DoLogin;
@@ -63,5 +64,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarPorIdUseCase, BuscarPorIdUseCase>();
         services.AddScoped<IAtualizarAcaoUseCase, AtualizarAcaoUseCase>();
         services.AddScoped<IBuscarTodasAcoesUseCase, BuscarTodasAcoesUseCase>();
+        services.AddScoped<IBuscarAcaoFichaPorIdUseCase, BuscarAcaoFichaPorIdUseCase>();
     }
 }
