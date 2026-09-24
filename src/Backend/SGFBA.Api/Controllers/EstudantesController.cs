@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGFBA.Application.UseCases.Estudantes.Atualizar;
 using SGFBA.Application.UseCases.Estudantes.BuscarAtivoPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarEstudantesFichas;
+using SGFBA.Application.UseCases.Estudantes.BuscarEstudantesFichasAtivos;
 using SGFBA.Application.UseCases.Estudantes.BuscarPorId;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodos;
 using SGFBA.Application.UseCases.Estudantes.BuscarTodosAtivos;
@@ -38,6 +39,18 @@ public class EstudantesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ResponseEstudantesFichasJson), StatusCodes.Status200OK)]
     public async Task<IActionResult> BuscarEstudantesFichas([FromServices] IBuscarEstudantesFichasUseCase useCase)
+    {
+        var response = await useCase.Executar();
+
+        return Ok(response);
+    }
+
+    [HttpGet("ativos/fichas")]
+    [Authorize(Roles = $"{Roles.ADMIN},{Roles.GESTOR_ESCOLAR},{Roles.SECRETARIO}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseEstudantesFichasJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> BuscarEstudantesFichasAtivos([FromServices] IBuscarEstudantesFichasAtivosUseCase useCase)
     {
         var response = await useCase.Executar();
 

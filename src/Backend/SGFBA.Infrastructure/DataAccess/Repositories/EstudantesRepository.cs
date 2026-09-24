@@ -62,4 +62,11 @@ internal class EstudantesRepository : IWriteOnlyEstudantesRepository, IReadOnlyE
             .Include(estudante => estudante.Fichas).ThenInclude(ficha => ficha.Acoes)
             .ToListAsync();
     }
+
+    public async Task<List<Estudante>> BuscarEstudantesFichasAtivos()
+    {
+        return await _dbContext.Estudantes.AsNoTracking()
+            .Include(estudante => estudante.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .ToListAsync();
+    }
 }
