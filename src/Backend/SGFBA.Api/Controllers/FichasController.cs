@@ -61,7 +61,7 @@ public class FichasController : ControllerBase
     }
 
     [HttpGet]
-    [Route("usuarios/{idUsuario}/fichas{idFicha}")]
+    [Route("{idFicha}/usuarios/{idUsuario}")]
     [Authorize(Roles = $"{Roles.SECRETARIO},{Roles.GESTOR_ESCOLAR}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]

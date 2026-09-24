@@ -7,4 +7,5 @@ public interface IReadOnlyFichasRepository
     Task<List<Ficha>> BuscarTodas();
     Task<List<Ficha>> BuscarTodasAtivas(long idUsuario);
     Task<Ficha?> BuscarPorId(long idUsuario, long idFicha);
+    Task<Ficha?> BuscarAtivaPorId(long idUsuario, long idFicha);
 }

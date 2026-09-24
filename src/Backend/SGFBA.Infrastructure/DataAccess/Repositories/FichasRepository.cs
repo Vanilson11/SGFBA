@@ -29,9 +29,17 @@ internal class FichasRepository : IWriteOnlyFichasRepository, IReadOnlyFichasRep
         return await _dbContext.Fichas.AsNoTracking().Where(ficha => ficha.IdUsuario.Equals(idUsuario)).ToListAsync();
     }
 
+    async Task<Ficha?> IReadOnlyFichasRepository.BuscarAtivaPorId(long idUsuario, long idFicha)
+    {
+        return await _dbContext.Fichas.AsNoTracking()
+            .Include(ficha => ficha.Acoes)
+            .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
+    }
+
     async Task<Ficha?> IReadOnlyFichasRepository.BuscarPorId(long idUsuario, long idFicha)
     {
         return await _dbContext.Fichas.AsNoTracking()
+            .IgnoreQueryFilters()
             .Include(ficha => ficha.Acoes)
             .FirstOrDefaultAsync(ficha => ficha.IdUsuario.Equals(idUsuario) && ficha.Id.Equals(idFicha));
     }

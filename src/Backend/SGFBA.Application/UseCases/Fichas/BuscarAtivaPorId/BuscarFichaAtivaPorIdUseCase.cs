@@ -26,7 +26,7 @@ public class BuscarFichaAtivaPorIdUseCase : IBuscarFichaAtivaPorIdUseCase
     {
         var usuarioLogado = await _loggedUser.Get();
 
-        var ficha = await _readOnlyFichasRepository.BuscarPorId(usuarioLogado.Id, idFicha);
+        var ficha = await _readOnlyFichasRepository.BuscarAtivaPorId(usuarioLogado.Id, idFicha);
 
         if (ficha is null) throw new NotFoundException(ResourceErrorMessages.FICHA_NAO_ENCONTRADA);
 
