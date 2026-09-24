@@ -6,6 +6,7 @@ using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadores;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadoresAtivos;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadorOrientadorAtivoPorId;
+using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadorOrientadorPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -95,6 +96,22 @@ public class UsuariosController : ControllerBase
     [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> BuscarCoordenadorOrientadorAtivoPorId(
         [FromServices] IBuscarCoordenadorOrientadorAtivoPorIdUseCase useCase,
+        [FromRoute] long id
+        )
+    {
+        var response = await useCase.Executar(id);
+
+        return Ok(response);
+    }
+
+    [HttpGet("coordenadores/orientadores/{id}")]
+    [Authorize(Roles = $"{Roles.ADMIN}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ResponseCoordenadorOrientadorJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResourceErrorMessages), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> BuscarCoordenadorOrientadorPorId(
+        [FromServices] IBuscarCoordenadorOrientadorPorIdUseCase useCase,
         [FromRoute] long id
         )
     {

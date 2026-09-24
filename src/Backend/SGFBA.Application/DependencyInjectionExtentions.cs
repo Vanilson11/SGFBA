@@ -24,6 +24,7 @@ using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadores;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadoresAtivos;
 using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadorOrientadorAtivoPorId;
+using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadorOrientadorPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -71,5 +72,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IBuscarCoordenadoresOrientadoresAtivosUseCase, BuscarCoordenadoresOrientadoresAtivosUseCase>();
         services.AddScoped<IBuscarCoordenadoresOrientadoresUseCase, BuscarCoordenadoresOrientadoresUseCase>();
         services.AddScoped<IBuscarCoordenadorOrientadorAtivoPorIdUseCase, BuscarCoordenadorOrientadorAtivoPorIdUseCase>();
+        services.AddScoped<IBuscarCoordenadorOrientadorPorIdUseCase, BuscarCoordenadorOrientadorPorIdUseCase>();
     }
 }

@@ -8,6 +8,7 @@ public interface IReadOnlyUsuarioRepository
     Task<List<Usuario>> BuscarTodosAtivos();
     Task<List<Usuario>> BuscarCoordenadoresOrientadoresAtivos();
     Task<Usuario?> BuscarCoordenadorOrientadorAtivoPorId(long id);
+    Task<Usuario?> BuscarCoordenadorOrientadorPorId(long id);
     Task<List<Usuario>> BuscarCoordenadoresOrientadores();
     Task<Usuario?> BuscarPorId(long id);
     Task<Usuario?> BuscarPorEmail(string email);
