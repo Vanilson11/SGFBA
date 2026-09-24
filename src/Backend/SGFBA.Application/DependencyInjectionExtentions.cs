@@ -21,6 +21,7 @@ using SGFBA.Application.UseCases.Fichas.Registrar;
 using SGFBA.Application.UseCases.Ususarios.AlterarSenha;
 using SGFBA.Application.UseCases.Ususarios.Atualizar;
 using SGFBA.Application.UseCases.Ususarios.AtualizarPerfil;
+using SGFBA.Application.UseCases.Ususarios.BuscarCoordenadoresOrientadoresAtivos;
 using SGFBA.Application.UseCases.Ususarios.BuscarPorId;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodos;
 using SGFBA.Application.UseCases.Ususarios.BuscarTodosAtivos;
@@ -65,5 +66,6 @@ public static class DependencyInjectionExtentions
         services.AddScoped<IAtualizarAcaoUseCase, AtualizarAcaoUseCase>();
         services.AddScoped<IBuscarTodasAcoesUseCase, BuscarTodasAcoesUseCase>();
         services.AddScoped<IBuscarAcaoFichaPorIdUseCase, BuscarAcaoFichaPorIdUseCase>();
+        services.AddScoped<IBuscarCoordenadoresOrientadoresAtivosUseCase, BuscarCoordenadoresOrientadoresAtivosUseCase>();
     }
 }

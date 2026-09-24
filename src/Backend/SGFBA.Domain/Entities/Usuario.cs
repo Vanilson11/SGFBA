@@ -13,4 +13,5 @@ public class Usuario
     public string Role { get; set; } = Roles.MEMBRO;
     public bool Ativo { get; set; } = true;
     public Guid UserIdentifier { get; set; } = Guid.CreateVersion7();
+    public ICollection<Ficha> Fichas { get; set; } = [];
 }

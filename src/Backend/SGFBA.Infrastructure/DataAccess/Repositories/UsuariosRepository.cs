@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SGFBA.Domain.Entities;
+using SGFBA.Domain.Enums;
 using SGFBA.Domain.Repositories.Usuarios;
 
 namespace SGFBA.Infrastructure.DataAccess.Repositories;
@@ -64,5 +65,13 @@ internal class UsuariosRepository : IReadOnlyUsuarioRepository, IWriteOnlyUsuari
         usuarioExiste.Ativo = false;
 
         return true;
+    }
+
+    public async Task<List<Usuario>> BuscarCoordenadoresOrientadoresAtivos()
+    {
+        return await _dbContext.Usuarios.AsNoTracking()
+            .Where(usuario => usuario.Cargo.Equals(CargoUsuario.CoordenadorPedagogico) || usuario.Cargo.Equals(CargoUsuario.OrientadorEducacional))
+            .Include(usuario => usuario.Fichas).ThenInclude(ficha => ficha.Acoes)
+            .ToListAsync();
     }
 }
